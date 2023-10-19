@@ -26,6 +26,13 @@
 /backend/out/
 !/backend/**/src/main/**/out/
 !/backend/**/src/test/**/out/
+.idea/.gitignore
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/jarRepositories.xml
+.idea/misc.xml
+.idea/vcs.xml
+
 
 ### NetBeans ###
 /backend/nbproject/private/
@@ -81,3 +88,17 @@
 # System files
 .DS_Store
 Thumbs.db
+
+# Maven
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+
+
+
