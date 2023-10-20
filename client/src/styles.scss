@@ -1,1 +1,100 @@
 /* You can add global styles to this file, and also import other style files */
+@import "styles/_variables.scss";
+
+a {
+  text-decoration: none; // Removes the underline from links
+
+  &:hover {
+    text-decoration: underline; // Adds underline on hover for better UX
+  }
+}
+
+body.light-theme {
+  background-color: $light-primary;
+  color: $light-text;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $light-heading;
+  }
+
+  p {
+    color: $light-paragraph;
+  }
+
+  a {
+    color: $light-heading;
+    text-decoration: none;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: $light-button-bg;
+      text-decoration: none;
+    }
+  }
+
+  button {
+    background-color: $light-button-bg;
+    color: $light-button-text;
+  }
+}
+
+body.dark-theme {
+  background-color: $dark-primary;
+  color: $dark-text;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $dark-heading;
+  }
+
+  p {
+    color: $dark-paragraph;
+  }
+
+  a {
+    color: $dark-heading;
+    text-decoration: none;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: $dark-button-bg;
+      text-decoration: none;
+    }
+  }
+
+  button {
+    background-color: $dark-button-bg;
+    color: $dark-button-text;
+  }
+}
+
+.theme-toggle {
+  position: fixed;
+  margin: 10px;
+  padding: 10px;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000; // to ensure it's above other elements
+}
+
+.theme-toggle img {
+  width: 30px;
+  height: 30px;
+}
