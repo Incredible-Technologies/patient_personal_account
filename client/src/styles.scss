@@ -10,7 +10,7 @@ a {
 }
 
 body.light-theme {
-  background-color: $light-primary;
+  background-image: $light-primary;
   color: $light-text;
 
   h1,
@@ -43,10 +43,11 @@ body.light-theme {
     background-color: $light-button-bg;
     color: $light-button-text;
   }
+  
 }
 
 body.dark-theme {
-  background-color: $dark-primary;
+  background-image: $dark-primary;
   color: $dark-text;
 
   h1,
@@ -79,6 +80,8 @@ body.dark-theme {
     background-color: $dark-button-bg;
     color: $dark-button-text;
   }
+
+  
 }
 
 .theme-toggle {
@@ -98,3 +101,66 @@ body.dark-theme {
   width: 30px;
   height: 30px;
 }
+
+
+
+//Divider
+.custom-shape-divider-bottom-1667156080 {
+  //position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1667156080 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 29px;
+}
+
+.custom-shape-divider-bottom-1667156080 .shape-fill {
+  fill: $dark-button-bg
+}
+
+
+
+.custom-shape-divider-top-1667156508 {
+  //position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1667156508 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 29px;
+}
+
+.custom-shape-divider-top-1667156508 .shape-fill {
+  fill: $dark-button-bg
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: $dark-button-bg
+}
+
