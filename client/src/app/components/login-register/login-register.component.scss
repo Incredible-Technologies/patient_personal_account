@@ -1,0 +1,144 @@
+
+@import "../../../styles.scss";
+
+.login-register-container {
+    width: 90%;
+    max-width: 500px;
+    margin: 50px auto; // Added space on top and bottom
+    padding: 10px 10px; // Added space on left and right
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 0 10px rgba(0, 0, 0, 0.1); // Enhanced shadow
+    border: 1px solid $dark-button-bg; // Added border
+    border-radius: 10px;
+
+    .tabs {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+
+        button {
+            padding: 10px 20px;
+            margin: 0 5px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: transparent;
+            color: darken($light-secondary, 30%); // Color for inactive tab
+
+            &.active {
+                background-color: $light-button-bg;
+                color: $light-button-text;
+            }
+        }
+    }
+
+    .lottie-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+        display: flex;
+        align-items: center;
+
+        label {
+            margin-right: 10px; // Space between the icon and the input
+        }
+
+        input {
+            flex-grow: 1; // Allows the input to take up the remaining space
+            padding: 10px;
+            border: 1px solid darken($light-secondary, 10%);
+            border-radius: 30px;
+        }
+    }
+
+    .social-login, .social-register {
+        text-align: center;
+        margin-top: 20px;
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+
+            a {
+                margin: 0 10px;
+
+                img {
+                    width: 30px; // Adjust as needed
+                    height: 30px;
+                }
+            }
+        }
+    }
+
+    .form-actions {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .forgot-password {
+            color: darken($light-secondary, 30%);
+            transition: color 0.3s;
+
+            &:hover {
+                color: $light-button-bg;
+            }
+        }
+    }
+
+    button[type="submit"] {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        background-color: $light-button-bg;
+        color: $light-button-text;
+        transition: background-color 0.3s;
+
+        &:hover {
+            background-color: darken($light-button-bg, 10%);
+        }
+    }
+}
+
+
+
+body.dark-theme .login-register-container {
+    background-color: $dark-primary;
+    color: $dark-text;
+
+    .tabs button {
+        color: lighten($dark-secondary, 30%); // Color for inactive tab in dark mode
+
+        &.active {
+            background-color: $dark-button-bg;
+            color: $dark-button-text;
+        }
+    }
+
+    input {
+        background-color: darken($dark-secondary, 10%);
+        color: $dark-text;
+        border-color: lighten($dark-secondary, 10%);
+    }
+
+    .form-actions .forgot-password {
+        color: lighten($dark-secondary, 30%);
+    }
+
+    button[type="submit"] {
+        background-color: $dark-button-bg;
+        color: $dark-button-text;
+
+        &:hover {
+            background-color: darken($dark-button-bg, 10%);
+        }
+    }
+}

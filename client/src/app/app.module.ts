@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './modules/home/home.component';
+import { LoginRegisterComponent } from './components/login-register/login-register.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    LoginRegisterComponent
   ],
   imports: [
     BrowserModule,
