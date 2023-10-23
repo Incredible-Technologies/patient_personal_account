@@ -23,3 +23,20 @@ $desktop: 992px;
 $large-desktop: 1200px;
 $navbar-breakpoint: 1024px;
 
+// Add these new variables for the icon colors
+$light-icon-bloodpressure: #FF4136; // Vibrant Red
+$light-icon-pulse: #FF80CC; // Deep Pink
+$light-icon-bloodsugar: #0074D9; // Bright Blue
+$light-icon-temperature: #FF851B; // Warm Orange
+
+$dark-icon-bloodpressure: #FF6F69; // Lighter Red for Dark Mode
+$dark-icon-pulse: #FFA6D9; // Lighter Pink for Dark Mode
+$dark-icon-bloodsugar: #4AA4FF; // Lighter Blue for Dark Mode
+$dark-icon-temperature: #FFA366; // Lighter Orange for Dark Mode
+
+
+// Light Theme
+$light-icon-table: #007BFF;
+
+// Dark Theme
+$dark-icon-table: #007BFF;

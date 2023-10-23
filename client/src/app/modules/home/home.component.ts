@@ -7,6 +7,7 @@ import { Title } from '@angular/platform-browser';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent {
+  activeTab: 'upcoming' | 'past' = 'upcoming';
   constructor(private title: Title) { }
   
   ngOnInit() {
