@@ -164,3 +164,77 @@ body.dark-theme {
   background: $dark-button-bg
 }
 
+/* Light Mode Icon Colors */
+body.light-theme .card .fa-heartbeat {
+  color: $light-icon-bloodpressure;
+}
+
+body.light-theme .card .fa-heart {
+  color: $light-icon-pulse;
+}
+
+body.light-theme .card .fa-tint {
+  color: $light-icon-bloodsugar;
+}
+
+body.light-theme .card .fa-thermometer-half {
+  color: $light-icon-temperature;
+}
+
+/* Dark Mode Icon Colors */
+body.dark-theme .card .fa-heartbeat {
+  color: $dark-icon-bloodpressure;
+}
+
+body.dark-theme .card .fa-heart {
+  color: $dark-icon-pulse;
+}
+
+body.dark-theme .card .fa-tint {
+  color: $dark-icon-bloodsugar;
+}
+
+body.dark-theme .card .fa-thermometer-half {
+  color: $dark-icon-temperature;
+}
+
+/* Card Hover Animation */
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Adjusting the layout for the cards to appear two on the first line and two on the second line for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .info-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    flex: 0 0 48%; // This will make the cards take up almost half the width, with a little space in between
+    margin: 1%; // This will add a little space between the cards
+  }
+}
+
+
+  /* Light Mode Icon Colors */
+  body.light-theme table th .fas {
+    color: $light-icon-table;
+  }
+  
+  /* Dark Mode Icon Colors */
+  body.dark-theme table th .fas {
+    color: $dark-icon-table;
+  }
+
+  /* Dark Mode Styles for Tabs */
+body.dark-theme .tabs button {
+  background-color: rgba(255, 255, 255, 0.1); // Lighter background for dark mode
+  color: $dark-text; // Lighter text color for dark mode
+}
+
+body.dark-theme .tabs button.active {
+  background-color: #444; // Darker background for active tab in dark mode
+  color: $dark-text; // White text color for active tab in dark mode
+}
