@@ -150,12 +150,7 @@ table th {
   color: $dark-text; // Darker text color for active tab
 }
 
-/* Responsive Design */
-@media (max-width: 768px) {
-  .info-cards {
-    flex-direction: column;
-  }
-}
+
 
 /* General Action Icon Styles */
 .action-icon {
@@ -184,5 +179,12 @@ table th {
 
   &:hover {
     color: #b21f2d; // Darker red on hover
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .info-cards {
+    flex-direction: column;
   }
 }

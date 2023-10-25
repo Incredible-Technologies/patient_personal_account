@@ -7,13 +7,15 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 import { HomeComponent } from './modules/home/home.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
+import { MedicalCardComponent } from './components/medical-card/medical-card.component';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AppComponent,
     HomeComponent,
-    LoginRegisterComponent
+    LoginRegisterComponent,
+    MedicalCardComponent
   ],
   imports: [
     BrowserModule,
