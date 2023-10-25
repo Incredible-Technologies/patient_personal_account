@@ -1,0 +1,382 @@
+@import "../../../styles.scss";
+
+.medical-card-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.medical-card-banner {
+  box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
+    0 0 10px rgba(131, 176, 235, 0.1); // Enhanced shadow
+  border: 1px solid $dark-button-bg;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner-content {
+  flex: 1;
+  text-align: center;
+}
+
+.banner-content i {
+  margin-bottom: 10px; // Space between the icon and the heading
+  color: #007bff; // Color of the icon
+}
+
+.banner-image {
+  flex-basis: 30%; // Adjust as needed
+  padding-left: 20px; // Space between text and image
+}
+
+.banner-image img {
+  max-width: 100%;
+  border-radius: 10px; // Optional: to make the image corners rounded
+}
+
+.med-card {
+  background-color: transparent; // Transparent background
+  border: 1px solid #007bff; // Blue border
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+// Personal Info
+.personal-info {
+  box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
+    0 0 10px rgba(131, 176, 235, 0.1);
+  border: 1px solid $dark-button-bg;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; // Aligns the heading to the left/start
+  i {
+    color: $dark-button-bg; // Blue color for the icons
+  }
+}
+
+h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px; // Space between the icon and the text
+}
+
+.info-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 20px; // Space between the heading and the content
+}
+
+.info-item {
+  flex-basis: 48%; // Two items per row
+  margin: 10px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+label {
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 5px; // Space between the icon and the label text
+}
+
+.med-history-card {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 1px solid $dark-button-bg;
+  position: relative;
+  z-index: 1;
+}
+
+.medical-history {
+  h2 {
+    text-align: left;
+  }
+
+  .history-content {
+    position: relative;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-left: 40px;
+
+    .history-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      position: relative;
+      z-index: 1;
+
+      .history-details {
+        display: flex;
+        flex-direction: column;
+
+        strong {
+          margin-bottom: 5px;
+        }
+      }
+
+      &:before {
+        content: "";
+        position: absolute;
+        left: -15px;
+        top: 50%;
+        width: 10px;
+        height: 2px;
+        background-color: $dark-button-bg;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        transform: translateY(-50%);
+      }
+
+      &:after {
+        content: "";
+        position: absolute;
+        left: -20px; // Adjusted for the circle
+        top: 50%;
+        width: 8px;
+        height: 8px;
+        background-color: $dark-button-bg;
+        border-radius: 50%;
+        transform: translateY(-50%);
+      }
+
+      i {
+        color: $dark-button-bg;
+        margin-right: 10px;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+    }
+  }
+}
+
+.med-diagnostics-card {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 1px solid $dark-button-bg;
+  position: relative;
+  z-index: 1; // to ensure it pops up above other content
+}
+
+.diagnostics {
+  h2 {
+    text-align: left; // Aligning the heading to the left/start
+  }
+
+  .diagnostics-content {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-left: 40px; // Added padding to accommodate the icons
+
+    .diagnostics-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+
+      i {
+        color: $dark-button-bg;
+        margin-right: 10px;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+
+      .diagnostics-details {
+        display: flex;
+        flex-direction: column;
+
+        strong {
+          font-weight: bold;
+        }
+
+        p {
+          margin-top: 5px;
+        }
+
+        span {
+          font-size: 0.9em;
+          color: gray;
+        }
+      }
+    }
+  }
+}
+
+.med-treatments-card {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 1px solid $dark-button-bg;
+  position: relative;
+  z-index: 1;
+}
+
+.treatments {
+  h2 {
+    text-align: left;
+  }
+
+  .treatments-content {
+    max-height: 300px;
+    overflow-y: auto;
+    padding-left: 30px;
+
+    .treatments-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 1;
+
+      i {
+        color: $dark-button-bg;
+        margin-right: 10px;
+        background-color: #fff;
+        border-radius: 50%;
+        padding: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        position: relative;
+        z-index: 2;
+      }
+
+      .treatments-details {
+        strong {
+          display: block;
+          font-weight: bold;
+          margin-bottom: 5px;
+        }
+
+        p {
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+
+.attachments {
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: transparent;
+  border: 1px solid $dark-button-bg;
+  position: relative;
+  z-index: 1;
+}
+
+.attachments-content-scrollable {
+  max-height: 400px; // Adjust as needed
+  overflow-y: auto;
+  padding-right: 10px; // To avoid the scrollbar overlapping the content
+}
+
+.attachments-content {
+  padding-left: 30px;
+
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 10px;
+
+    th,
+    td {
+      padding: 12px 10px;
+      text-align: left;
+      position: relative;
+    }
+
+    tr:not(:last-child) th,
+    tr:not(:last-child) td {
+      border-bottom: 1px solid rgba(224, 224, 224, 0.5);
+    }
+
+    th {
+      background-color: rgba(0, 123, 255, 0.1);
+      border-radius: 10px;
+    }
+  }
+}
+
+/* General Action Icon Styles */
+.action-icon {
+  font-size: 20px; // Adjust as needed
+  cursor: pointer;
+  margin-right: 10px; // Space between icons
+  transition: transform 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1); // Slight enlargement on hover
+  }
+}
+
+/* Download Action Icon Styles */
+.download-icon {
+  color: #007bff; // Blue color for the download icon
+
+  &:hover {
+    color: #0056b3; // Darker blue on hover
+  }
+}
+
+/* Delete Action Icon Styles */
+.delete-icon {
+  color: #dc3545; // Red color for the delete icon
+
+  &:hover {
+    color: #b21f2d; // Darker red on hover
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .info-item {
+    flex-basis: 100%; // One item per row on smaller screens
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .medical-card-banner {
+    flex-direction: column;
+  }
+
+  .banner-content {
+    margin-bottom: 20px;
+  }
+
+  .banner-image {
+    flex-basis: 100%;
+    padding-left: 0;
+  }
+}
