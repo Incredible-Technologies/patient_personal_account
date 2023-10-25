@@ -27,8 +27,8 @@ public class UserSevice implements UserDetailsService {
     private final PasswordEncoder passwordEncoder;
 
 
-    public Optional<User> findByUsername(String username){
-        return userRepository.findByUsername(username);
+    public Optional<User> findByUsername(String email){
+        return userRepository.findByEmail(email);
     }
 
     @Override
@@ -38,7 +38,7 @@ public class UserSevice implements UserDetailsService {
                 String.format("Пользователь '%s' не найден", username))
         ));
         return new org.springframework.security.core.userdetails.User(
-                user.getUsername(),
+                user.getEmail(),
                 user.getPassword(),
                 user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList())
         );
@@ -46,7 +46,7 @@ public class UserSevice implements UserDetailsService {
 
     public User createNewUser(RegistrationUser registrationUser){
         User user = new User();
-        user.setUsername(registrationUser.getUsername());
+        user.setEmail(registrationUser.getEmail());
         user.setEmail(registrationUser.getEmail());
         user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         user.setRoles(Set.of(roleService.getUserRole()));
