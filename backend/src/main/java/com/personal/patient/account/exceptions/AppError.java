@@ -1,4 +1,4 @@
-package com.vista.exceptions;
+package com.personal.patient.account.exceptions;
 
 import lombok.Data;
 

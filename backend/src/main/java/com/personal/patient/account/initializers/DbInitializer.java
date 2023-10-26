@@ -1,7 +1,7 @@
-package com.vista.initializers;
+package com.personal.patient.account.initializers;
 
-import com.vista.entities.Role;
-import com.vista.repositories.RoleRepository;
+import com.personal.patient.account.entities.Role;
+import com.personal.patient.account.repositories.RoleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;

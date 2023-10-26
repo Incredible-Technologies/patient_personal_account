@@ -1,4 +1,4 @@
-package com.vista.entities;
+package com.personal.patient.account.entities;
 
 
 import lombok.Data;

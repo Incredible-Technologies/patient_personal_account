@@ -1,6 +1,6 @@
-package com.vista.configs;
+package com.personal.patient.account.configs;
 
-import com.vista.utils.JwtTokenUtils;
+import com.personal.patient.account.utils.JwtTokenUtils;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.SignatureException;
 import lombok.RequiredArgsConstructor;

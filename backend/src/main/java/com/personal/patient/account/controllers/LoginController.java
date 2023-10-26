@@ -1,4 +1,4 @@
-package com.vista.controllers;
+package com.personal.patient.account.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,8 +1,8 @@
-package com.vista.controllers;
+package com.personal.patient.account.controllers;
 
-import com.vista.models.JwtRequest;
-import com.vista.models.RegistrationUser;
-import com.vista.service.AuthService;
+import com.personal.patient.account.models.JwtRequest;
+import com.personal.patient.account.models.RegistrationUser;
+import com.personal.patient.account.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

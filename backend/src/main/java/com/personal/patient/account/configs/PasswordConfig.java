@@ -1,4 +1,4 @@
-package com.vista.configs;
+package com.personal.patient.account.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

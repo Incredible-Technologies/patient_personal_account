@@ -1,8 +1,8 @@
-package com.vista.service;
+package com.personal.patient.account.service;
 
-import com.vista.entities.User;
-import com.vista.models.RegistrationUser;
-import com.vista.repositories.UserRepository;
+import com.personal.patient.account.entities.User;
+import com.personal.patient.account.models.RegistrationUser;
+import com.personal.patient.account.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -12,7 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;

@@ -1,6 +1,6 @@
-package com.vista.configs;
+package com.personal.patient.account.configs;
 
-import com.vista.service.UserSevice;
+import com.personal.patient.account.service.UserSevice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;

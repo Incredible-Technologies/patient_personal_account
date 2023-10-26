@@ -1,12 +1,12 @@
-package com.vista.service;
+package com.personal.patient.account.service;
 
-import com.vista.entities.User;
-import com.vista.exceptions.AppError;
-import com.vista.models.JwtRequest;
-import com.vista.models.JwtResponse;
-import com.vista.models.RegistrationUser;
-import com.vista.models.UserResponse;
-import com.vista.utils.JwtTokenUtils;
+import com.personal.patient.account.exceptions.AppError;
+import com.personal.patient.account.models.JwtRequest;
+import com.personal.patient.account.models.JwtResponse;
+import com.personal.patient.account.entities.User;
+import com.personal.patient.account.models.RegistrationUser;
+import com.personal.patient.account.models.UserResponse;
+import com.personal.patient.account.utils.JwtTokenUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

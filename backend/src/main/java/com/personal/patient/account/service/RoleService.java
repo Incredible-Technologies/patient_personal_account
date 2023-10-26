@@ -1,7 +1,7 @@
-package com.vista.service;
+package com.personal.patient.account.service;
 
-import com.vista.entities.Role;
-import com.vista.repositories.RoleRepository;
+import com.personal.patient.account.entities.Role;
+import com.personal.patient.account.repositories.RoleRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

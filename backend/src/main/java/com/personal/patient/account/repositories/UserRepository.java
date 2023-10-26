@@ -1,6 +1,6 @@
-package com.vista.repositories;
+package com.personal.patient.account.repositories;
 
-import com.vista.entities.User;
+import com.personal.patient.account.entities.User;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

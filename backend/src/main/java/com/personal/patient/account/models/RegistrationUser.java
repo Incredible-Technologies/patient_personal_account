@@ -1,4 +1,4 @@
-package com.vista.models;
+package com.personal.patient.account.models;
 
 import lombok.Data;
 
