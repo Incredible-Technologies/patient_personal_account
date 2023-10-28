@@ -8,8 +8,8 @@
     <version>2.7.12</version>
     <relativePath/>
   </parent>
-  <groupId>ru.flamexander.spring</groupId>
-  <artifactId>security-jwt</artifactId>
+  <groupId>com</groupId>
+  <artifactId>personal-patient-account</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>security-jwt</name>
   <description>Demo project for Spring Boot</description>
@@ -67,6 +67,8 @@
   </dependencies>
 
   <build>
+    <finalName>backend</finalName>
+    <defaultGoal>package</defaultGoal>
     <plugins>
       <plugin>
         <groupId>org.springframework.boot</groupId>
