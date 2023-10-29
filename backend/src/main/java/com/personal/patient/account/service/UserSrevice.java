@@ -12,13 +12,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserSevice implements UserDetailsService {
+public class UserSrevice implements UserDetailsService {
     private final UserRepository userRepository;
 
     private final RoleService roleService;
@@ -50,5 +51,10 @@ public class UserSevice implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         user.setRoles(Set.of(roleService.getUserRole()));
         return userRepository.save(user);
+    }
+
+    public User getUserByPrincipal(Principal principal) {
+        if (principal == null) return new User();
+        return userRepository.findByEmail(principal.getName()).get();
     }
 }
