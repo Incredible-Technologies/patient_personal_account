@@ -2,8 +2,10 @@ package com.personal.patient.account.entities;
 
 import com.personal.patient.account.models.enums.Gender;
 import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Data
@@ -25,8 +27,10 @@ public class Userinfo {
     @Column(name="lastName")
     private String lastName;
 
-    @Column(name="dateBirthDay")
-    private String dateBirthDay;
+    @Column(name="date_of_birt")
+    @Temporal(TemporalType.DATE)
+    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    private Date dateOfBirth;
 
     @Column(name="phoneNumber")
     private String phoneNumber;
