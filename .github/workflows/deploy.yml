@@ -1,4 +1,4 @@
-name: Deploy to AWS CI/CD
+name: Deploy to AWS CI/CD with docker
 
 on:
   push:
