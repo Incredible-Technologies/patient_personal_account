@@ -1,0 +1,36 @@
+name: Deploy to AWS CI/CD
+
+on:
+  push:
+    branches:
+      - dockerize
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2 
+
+    - name: Build and push Spring Boot Docker image
+      run: |
+        cd backend
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
+
+  deploy:
+    needs: build_and_push
+    runs-on: [self-hosted, aws-ec2]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy to EC2
+      run: |
+        cd backend
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker pull ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
+        docker compose up -d
