@@ -33,4 +33,4 @@ jobs:
         cd backend
         docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
         docker pull ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
-        docker compose up -d
+        docker compose up --detach
