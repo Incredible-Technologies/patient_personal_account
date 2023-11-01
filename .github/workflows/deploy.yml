@@ -3,7 +3,7 @@ name: Deploy to AWS CI/CD with docker
 on:
   push:
     branches:
-      - dockerize
+      - main
 
 jobs:
   build_and_push:
