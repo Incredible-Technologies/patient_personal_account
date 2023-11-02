@@ -1,5 +1,6 @@
 package com.personal.patient.account.service;
 
+import com.personal.patient.account.entities.ResultCard;
 import com.personal.patient.account.entities.ResultFile;
 import com.personal.patient.account.repositories.ResultFileRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +14,7 @@ import java.io.IOException;
 public class ResultFileService {
     private final ResultFileRepository resultFileRepository;
 
-    public ResultFile multipartFileToResultFile(MultipartFile file) throws IOException {
+    public ResultFile newMultipartFileToResultFile(MultipartFile file) throws IOException {
         ResultFile resultFile = new ResultFile();
         resultFile.setName(file.getName());
         resultFile.setOriginalFileName(file.getOriginalFilename());
@@ -23,7 +24,19 @@ public class ResultFileService {
         return resultFile;
     }
 
+    public void setMultipartFileToResultFile(ResultFile resultFile, MultipartFile file) throws IOException {
+        resultFile.setName(file.getName());
+        resultFile.setOriginalFileName(file.getOriginalFilename());
+        resultFile.setContentType(file.getContentType());
+        resultFile.setSize(file.getSize());
+        resultFile.setBytes(file.getBytes());
+    }
+
     public void saveResultFile(ResultFile resultFile){
         resultFileRepository.save(resultFile);
+    }
+
+    public ResultFile findByResultCard(ResultCard resultCard){
+        return resultFileRepository.findByResultCard(resultCard).orElseGet(ResultFile::new);
     }
 }
