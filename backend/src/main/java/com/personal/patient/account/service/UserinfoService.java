@@ -5,6 +5,7 @@ import com.personal.patient.account.entities.Userinfo;
 import com.personal.patient.account.models.UserInfoRepresentation;
 import com.personal.patient.account.models.enums.Gender;
 import com.personal.patient.account.repositories.UserInfoRepository;
+import com.personal.patient.account.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,8 @@ public class UserinfoService {
 
     private final UserInfoRepository userInfoRepository;
 
+    private final DateUtils dateUtils;
+
     public void createOrChangeUserinfo(UserInfoRepresentation userInfoRequest, User user){
         Optional<Userinfo> existUserinfo = userInfoRepository.findByUser(user);
         Userinfo userinfo = existUserinfo.orElseGet(Userinfo::new);
@@ -29,17 +32,7 @@ public class UserinfoService {
         userinfo.setMiddleName(userInfoRequest.getMiddleName());
         userinfo.setLastName(userInfoRequest.getLastName());
 
-        //To do
-        // разобраться в атоматическом парсинге даты по анотации
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
-        Date date = new Date();
-        try {
-            date = dateFormat.parse(userInfoRequest.getDateOfBirth());
-        } catch (ParseException e) {
-            // Ошибка парсинга даты
-            e.printStackTrace();
-        }
+        Date date = dateUtils.parseStringToDate(userInfoRequest.getDateOfBirth());
         userinfo.setDateOfBirth(date);
         userinfo.setPhoneNumber(userInfoRequest.getPhoneNumber());
         userinfo.setGender(Gender.fromValue(userInfoRequest.getGender()));

@@ -3,9 +3,12 @@ package com.personal.patient.account.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -30,9 +33,18 @@ public class User {
     )
     private Collection<Role> roles;
 
+    @JsonIgnore
     @OneToOne(
             mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
     private Userinfo userInfo;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<ResultCard> results = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "User";
+    }
 }

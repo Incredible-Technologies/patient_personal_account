@@ -1,6 +1,7 @@
 package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.User;
+import com.personal.patient.account.entities.Userinfo;
 import com.personal.patient.account.models.RegistrationUser;
 import com.personal.patient.account.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -56,5 +57,9 @@ public class UserSrevice implements UserDetailsService {
     public User getUserByPrincipal(Principal principal) {
         if (principal == null) return new User();
         return userRepository.findByEmail(principal.getName()).get();
+    }
+
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email).orElseGet(User::new);
     }
 }
