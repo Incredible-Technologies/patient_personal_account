@@ -8,6 +8,4 @@ RUN mvn clean package -DskipTests
 
 EXPOSE 8080
 
-EXPOSE 5432
-
 ENTRYPOINT ["java", "-jar", "target/backend.jar"]

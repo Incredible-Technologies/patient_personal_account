@@ -1,36 +1,65 @@
-name: Deploy to AWS CI/CD with docker
+name: Deploy to AWS CI/CD with Docker
 
 on:
   push:
     branches:
-      - main
+      - frontend/#6-frontend-seo-ci-cd
 
 jobs:
-  build_and_push:
+  build_and_push_spring:
     runs-on: ubuntu-latest
-
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v2 
-
-    - name: Build and push Spring Boot Docker image
-      run: |
-        cd backend
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker build -t ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest .
-        docker push ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
-
-  deploy:
-    needs: build_and_push
-    runs-on: [self-hosted,aws-ec2]
+    defaults:
+      run:
+        working-directory: backend
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Deploy to EC2
+    - name: Build and push Spring Boot Docker image
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
+
+  build_and_push_angular:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: client
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Build and push Angular Universal Docker image
+      run: |
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest .
+        docker push ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
+
+  deploy:
+    needs: [build_and_push_spring, build_and_push_angular]
+    runs-on: [self-hosted, aws-ec2]
+    env:
+        SPRING_APP_IMAGE: ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Deploy Spring Boot application
       run: |
         cd backend
-        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
-        docker pull ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
+        echo "SPRING_APP_IMAGE=${SPRING_APP_IMAGE}" > .env
+        docker-compose down
         docker-compose up -d
+
+    - name: Deploy Angular Universal application
+      run: |
+        cd client
+        docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+        docker pull ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
+        docker stop lichny-kabinet-patsienta-client || true
+        docker rm lichny-kabinet-patsienta-client || true
+        docker run -d --restart unless-stopped --name lichny-kabinet-patsienta-client -p 80:8080 ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
