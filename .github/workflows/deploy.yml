@@ -63,3 +63,5 @@ jobs:
         docker stop lichny-kabinet-patsienta-client || true
         docker rm lichny-kabinet-patsienta-client || true
         docker run -d --restart unless-stopped --name lichny-kabinet-patsienta-client -p 80:4000 ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
+
+        # Test Runner
