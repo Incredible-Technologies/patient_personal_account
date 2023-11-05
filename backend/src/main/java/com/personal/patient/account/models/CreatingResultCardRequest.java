@@ -5,8 +5,9 @@ import lombok.Data;
 @Data
 public class CreatingResultCardRequest {
     private Long id;
-    private String description;
 
+    private String name;
+    private String description;
     private String dateOfShouldReady;
 
     private String hospitalAddress;
@@ -15,6 +16,7 @@ public class CreatingResultCardRequest {
 
     public CreatingResultCardRequest(CreatingResultCardResponse response, Long id){
         this.id = id;
+        this.name = response.getName();
         this.description = response.getDescription();
         this.dateOfShouldReady = response.getDateOfShouldReady();
         this.hospitalAddress = response.getHospitalAddress();

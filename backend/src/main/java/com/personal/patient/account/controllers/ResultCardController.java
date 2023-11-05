@@ -27,6 +27,6 @@ public class ResultCardController {
     @PostMapping("/download")
     public ResponseEntity<?> downloadResultFile(@RequestParam("file") MultipartFile file, @RequestParam("cardId") Long cardId) throws IOException {
         resultCardService.saveResultFile(file, cardId);
-        return ResponseEntity.ok(cardId);
+        return ResponseEntity.ok(new DownloadResultFile(cardId));
     }
 }

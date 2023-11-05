@@ -4,6 +4,7 @@ import lombok.Data;
 
 @Data
 public class CreatingResultCardResponse {
+    private String name;
 
     private String description;
 

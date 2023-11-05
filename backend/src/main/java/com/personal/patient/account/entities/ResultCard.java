@@ -15,6 +15,9 @@ public class ResultCard {
     @Column(name="id")
     private Long id;
 
+    @Column(name="name")
+    private String name;
+
     @Column(name="description")
     private String description;
 
@@ -45,4 +48,9 @@ public class ResultCard {
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn
     private User user;
+
+    @Override
+    public String toString() {
+        return "ResultCard";
+    }
 }

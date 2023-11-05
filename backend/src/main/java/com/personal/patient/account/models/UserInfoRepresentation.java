@@ -2,8 +2,10 @@ package com.personal.patient.account.models;
 
 import com.personal.patient.account.entities.Userinfo;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class UserInfoRepresentation {
     private String firstName;
 
@@ -28,6 +30,6 @@ public class UserInfoRepresentation {
 
         this.phoneNumber = userinfo.getPhoneNumber();
 
-        this.gender = userinfo.getFirstName();
+        this.gender = userinfo.getGender().getValue();
     }
 }

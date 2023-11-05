@@ -5,6 +5,7 @@ import com.personal.patient.account.entities.Userinfo;
 import com.personal.patient.account.models.UserInfoRepresentation;
 import com.personal.patient.account.models.enums.Gender;
 import com.personal.patient.account.repositories.UserInfoRepository;
+import com.personal.patient.account.repositories.UserRepository;
 import com.personal.patient.account.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,8 @@ import java.util.Optional;
 public class UserinfoService {
 
     private final UserInfoRepository userInfoRepository;
+
+    private final UserRepository userRepository;
 
     private final DateUtils dateUtils;
 
@@ -36,6 +39,9 @@ public class UserinfoService {
         userinfo.setDateOfBirth(date);
         userinfo.setPhoneNumber(userInfoRequest.getPhoneNumber());
         userinfo.setGender(Gender.fromValue(userInfoRequest.getGender()));
+        userInfoRepository.save(userinfo);
+        user.setUserInfo(userinfo);
+        userRepository.save(user);
     }
 
     public Userinfo getUserinfoByUser(User user){

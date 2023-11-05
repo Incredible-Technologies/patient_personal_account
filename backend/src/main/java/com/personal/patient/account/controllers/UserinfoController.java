@@ -4,7 +4,7 @@ import com.personal.patient.account.entities.User;
 import com.personal.patient.account.entities.Userinfo;
 import com.personal.patient.account.models.UserInfoRepresentation;
 import com.personal.patient.account.models.FullUserInfoRepresentation;
-import com.personal.patient.account.service.UserSrevice;
+import com.personal.patient.account.service.UserService;
 import com.personal.patient.account.service.UserinfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +17,7 @@ import java.security.Principal;
 @RequestMapping("/userinfo")
 public class UserinfoController {
     private final UserinfoService userinfoService;
-    private final UserSrevice userService;
+    private final UserService userService;
 
     @PostMapping("/save")
     public ResponseEntity<?> saveOrChangeUserinfo(@RequestBody UserInfoRepresentation userInfoRequest, Principal principal){

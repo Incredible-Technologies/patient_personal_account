@@ -1,7 +1,6 @@
 package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.User;
-import com.personal.patient.account.entities.Userinfo;
 import com.personal.patient.account.models.RegistrationUser;
 import com.personal.patient.account.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserSrevice implements UserDetailsService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     private final RoleService roleService;
