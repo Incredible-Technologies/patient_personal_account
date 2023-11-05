@@ -3,7 +3,7 @@ name: Deploy to AWS CI/CD with Docker
 on:
   push:
     branches:
-      - frontend/#6-frontend-seo-ci-cd
+      - main
 
 jobs:
   build_and_push_spring:
