@@ -30,7 +30,9 @@ public class ProfileRepresentation {
 
         this.address = userinfo.getAddress();
 
-        this.dateOfBirth = userinfo.getDateOfBirth().toString();
+        if(userinfo.getDateOfBirth()!=null) {
+            this.dateOfBirth = userinfo.getDateOfBirth().toString();
+        }
 
         this.phoneNumber = userinfo.getPhoneNumber();
 

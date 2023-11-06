@@ -37,6 +37,7 @@ public class ProfileController {
     public ResponseEntity<?> getProfile(Principal principal){
         User user = userService.getUserByPrincipal(principal);
         Profile profile = profileService.getProfileByUser(user);
-        return ResponseEntity.ok(new ProfileRepresentation(profile));
+        ProfileRepresentation profileRepresentation = new ProfileRepresentation(profile);
+        return ResponseEntity.ok(profileRepresentation);
     }
 }
