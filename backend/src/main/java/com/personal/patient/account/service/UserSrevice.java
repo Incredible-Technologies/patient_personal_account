@@ -1,6 +1,7 @@
 package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.User;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.RegistrationUser;
 import com.personal.patient.account.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -54,7 +55,7 @@ public class UserSrevice implements UserDetailsService {
     }
 
     public User getUserByPrincipal(Principal principal) {
-        if (principal == null) return new User();
+        if (principal == null) throw new NotFoundException("user with such principal not found :" + principal);
         return userRepository.findByEmail(principal.getName()).get();
     }
 }

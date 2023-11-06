@@ -2,6 +2,7 @@ package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.User;
 import com.personal.patient.account.entities.Userinfo;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.UserInfoRepresentation;
 import com.personal.patient.account.models.enums.Gender;
 import com.personal.patient.account.repositories.UserInfoRepository;
@@ -25,7 +26,7 @@ public class UserinfoService {
 
     public void createOrChangeUserinfo(UserInfoRepresentation userInfoRequest, User user){
         Optional<Userinfo> existUserinfo = userInfoRepository.findByUser(user);
-        Userinfo userinfo = existUserinfo.orElseGet(Userinfo::new);
+        Userinfo userinfo = existUserinfo.orElseThrow(() -> new NotFoundException("no user with such email: " + user.getEmail()));
 
         userinfo.setUser(user);
 
