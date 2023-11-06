@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .antMatchers("/userinfo/save").authenticated()
                 .antMatchers("/all-cards").authenticated()
                 .antMatchers("/userinfo").authenticated()
+                .antMatchers("/files/result-file/**").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()

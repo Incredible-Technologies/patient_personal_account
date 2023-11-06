@@ -2,6 +2,7 @@ package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.ResultCard;
 import com.personal.patient.account.entities.ResultFile;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.repositories.ResultFileRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -37,6 +38,6 @@ public class ResultFileService {
     }
 
     public ResultFile findByResultCard(ResultCard resultCard){
-        return resultFileRepository.findByResultCard(resultCard).orElseGet(ResultFile::new);
+        return resultFileRepository.findByResultCard(resultCard).orElseThrow(() -> new NotFoundException("result file with card id " + resultCard.getId() + " not found"));
     }
 }

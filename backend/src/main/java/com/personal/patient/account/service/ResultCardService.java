@@ -3,6 +3,7 @@ package com.personal.patient.account.service;
 import com.personal.patient.account.entities.ResultCard;
 import com.personal.patient.account.entities.ResultFile;
 import com.personal.patient.account.entities.User;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.CreatingResultCardResponse;
 import com.personal.patient.account.repositories.ResultCardRepository;
 import com.personal.patient.account.utils.DateUtils;
@@ -41,7 +42,7 @@ public class ResultCardService {
     }
 
     public ResultCard findById(Long cardId){
-        return resultCardRepository.findById(cardId).orElseGet(ResultCard::new);
+        return resultCardRepository.findById(cardId).orElseThrow(() -> new NotFoundException("Card with id " + cardId + " not found"));
     }
 
     public List<ResultCard> findAllByUser(Principal principal){
