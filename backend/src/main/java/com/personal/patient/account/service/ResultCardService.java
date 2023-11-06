@@ -64,8 +64,8 @@ public class ResultCardService {
     public void saveResultFile(MultipartFile file, Long cardId) throws IOException {
         ResultCard savedResultCard = findById(cardId);
         savedResultCard.setDateOfDelivered(new Date());
-        ResultFile dbResultFile = resultFileService.findByResultCardNull(savedResultCard);
-        if(dbResultFile == null){
+        ResultFile dbResultFile = resultFileService.findByResultCardNew(savedResultCard);
+        if(dbResultFile.equals(new ResultFile())){
             dbResultFile = resultFileService.newMultipartFileToResultFile(file);
         }
         else {

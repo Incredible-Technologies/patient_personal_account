@@ -41,7 +41,7 @@ public class ResultFileService {
         return resultFileRepository.findByResultCard(resultCard).orElseThrow(() -> new NotFoundException("result file with card id " + resultCard.getId() + " not found"));
     }
 
-    public ResultFile findByResultCardNull(ResultCard resultCard){
-        return resultFileRepository.findByResultCard(resultCard).orElseGet(null);
+    public ResultFile findByResultCardNew(ResultCard resultCard){
+        return resultFileRepository.findByResultCard(resultCard).orElseGet(ResultFile::new);
     }
 }
