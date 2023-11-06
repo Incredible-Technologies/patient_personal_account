@@ -40,4 +40,8 @@ public class ResultFileService {
     public ResultFile findByResultCard(ResultCard resultCard){
         return resultFileRepository.findByResultCard(resultCard).orElseThrow(() -> new NotFoundException("result file with card id " + resultCard.getId() + " not found"));
     }
+
+    public ResultFile findByResultCardNull(ResultCard resultCard){
+        return resultFileRepository.findByResultCard(resultCard).orElseGet(null);
+    }
 }
