@@ -1,6 +1,7 @@
 package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.User;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.RegistrationUser;
 import com.personal.patient.account.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -59,6 +60,6 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUserByEmail(String email){
-        return userRepository.findByEmail(email).orElseGet(User::new);
+        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("user with email " + email + " not found"));
     }
 }

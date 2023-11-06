@@ -21,11 +21,13 @@ import java.util.List;
 public class ResultCardService {
     private final ResultCardRepository resultCardRepository;
     private final ResultFileService resultFileService;
-    private final UserService userSrevice;
+    private final UserService userService;
     private final DateUtils dateUtils;
 
 
     public ResultCard createResultCard(CreatingResultCardResponse resultCardResponse){
+        User dbUser = userService.getUserByEmail(resultCardResponse.getUserEmail());
+
         ResultCard resultCard = new ResultCard();
         resultCard.setDateOfMake(new Date());
 
@@ -34,7 +36,6 @@ public class ResultCardService {
         resultCard.setDescription(resultCardResponse.getDescription());
         resultCard.setHospitalAddress(resultCardResponse.getHospitalAddress());
 
-        User dbUser = userSrevice.getUserByEmail(resultCardResponse.getUserEmail());
         resultCard.setUser(dbUser);
 
         resultCardRepository.save(resultCard);
@@ -46,17 +47,17 @@ public class ResultCardService {
     }
 
     public List<ResultCard> findAllByUser(Principal principal){
-        User user = userSrevice.getUserByPrincipal(principal);
+        User user = userService.getUserByPrincipal(principal);
         return resultCardRepository.findByUserOrderByDateOfShouldReadyAsc(user);
     }
 
     public List<ResultCard> findAllDoneByUser(Principal principal){
-        User user = userSrevice.getUserByPrincipal(principal);
+        User user = userService.getUserByPrincipal(principal);
         return resultCardRepository.findByUserAndDateOfDeliveredIsNotNullOrderByDateOfShouldReadyAsc(user);
     }
 
     public List<ResultCard> findAllNotDoneByUser(Principal principal){
-        User user = userSrevice.getUserByPrincipal(principal);
+        User user = userService.getUserByPrincipal(principal);
         return resultCardRepository.findByUserAndDateOfDeliveredIsNullOrderByDateOfShouldReadyAsc(user);
     }
 
