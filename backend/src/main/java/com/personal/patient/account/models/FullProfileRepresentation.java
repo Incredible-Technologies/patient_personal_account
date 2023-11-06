@@ -2,7 +2,7 @@ package com.personal.patient.account.models;
 
 import lombok.Data;
 @Data
-public class FullUserInfoRepresentation {
+public class FullProfileRepresentation {
     private Long id;
     private String firstName;
 
@@ -18,7 +18,7 @@ public class FullUserInfoRepresentation {
 
     private String gender;
 
-    public FullUserInfoRepresentation(UserInfoRepresentation request, Long userId){
+    public FullProfileRepresentation(ProfileRepresentation request, Long userId){
         this.firstName = request.getFirstName();
         this.middleName= request.getMiddleName();
         this.lastName = request.getLastName();

@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
-    private final UserSrevice userSevice;
+    private final UserSrevice userService;
     private final JwtRequestFilter jwtRequestFilter;
 
     private final PasswordEncoder passwordEncoder;
@@ -33,8 +33,8 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/secured").authenticated()
                 .antMatchers("/info").authenticated()
-                .antMatchers("/userinfo/save").authenticated()
-                .antMatchers("/userinfo").authenticated()
+                .antMatchers("/profile/save").authenticated()
+                .antMatchers("/profile").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
@@ -50,7 +50,7 @@ public class SecurityConfig {
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        daoAuthenticationProvider.setUserDetailsService(userSevice);
+        daoAuthenticationProvider.setUserDetailsService(userService);
         return daoAuthenticationProvider;
     }
 

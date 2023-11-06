@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Userinfo {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;

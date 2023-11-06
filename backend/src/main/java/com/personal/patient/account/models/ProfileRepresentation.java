@@ -1,12 +1,12 @@
 package com.personal.patient.account.models;
 
-import com.personal.patient.account.entities.Userinfo;
+import com.personal.patient.account.entities.Profile;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
-public class UserInfoRepresentation {
+public class ProfileRepresentation {
     private String firstName;
 
     private String middleName;
@@ -21,7 +21,7 @@ public class UserInfoRepresentation {
 
     private String gender;
 
-    public UserInfoRepresentation(Userinfo userinfo){
+    public ProfileRepresentation(Profile userinfo){
         this.firstName = userinfo.getFirstName();
 
         this.middleName = userinfo.getMiddleName();

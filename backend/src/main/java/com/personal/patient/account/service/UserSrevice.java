@@ -56,6 +56,6 @@ public class UserSrevice implements UserDetailsService {
 
     public User getUserByPrincipal(Principal principal) {
         if (principal == null) throw new NotFoundException("user with such principal not found :" + principal);
-        return userRepository.findByEmail(principal.getName()).get();
+        return userRepository.findByEmail(principal.getName()).orElseThrow(()-> new NotFoundException("user with such email not found :" + principal.getName()));
     }
 }
