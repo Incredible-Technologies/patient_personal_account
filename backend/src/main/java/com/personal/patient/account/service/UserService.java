@@ -55,7 +55,7 @@ public class UserService implements UserDetailsService {
     }
 
     public User getUserByPrincipal(Principal principal) {
-        if (principal == null) return new User();
+        if (principal == null) throw new NotFoundException("user with such principal not found :" + principal);
         return userRepository.findByEmail(principal.getName()).get();
     }
 
