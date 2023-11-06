@@ -2,14 +2,18 @@ package com.personal.patient.account.models;
 
 import com.personal.patient.account.entities.Userinfo;
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 
 @Data
+@RequiredArgsConstructor
 public class UserInfoRepresentation {
     private String firstName;
 
     private String middleName;
 
     private String lastName;
+
+    private String address;
 
     private String dateOfBirth;
 
@@ -23,6 +27,8 @@ public class UserInfoRepresentation {
         this.middleName = userinfo.getMiddleName();
 
         this.lastName = userinfo.getLastName();
+
+        this.address = userinfo.getAddress();
 
         this.dateOfBirth = userinfo.getDateOfBirth().toString();
 

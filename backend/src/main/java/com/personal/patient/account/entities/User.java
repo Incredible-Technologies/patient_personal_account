@@ -35,4 +35,9 @@ public class User {
             fetch = FetchType.LAZY
     )
     private Userinfo userInfo;
+
+    @Override
+    public String toString() {
+        return "User";
+    }
 }

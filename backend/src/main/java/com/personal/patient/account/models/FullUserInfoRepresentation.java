@@ -10,6 +10,8 @@ public class FullUserInfoRepresentation {
 
     private String lastName;
 
+    private String address;
+
     private String dateOfBirth;
 
     private String phoneNumber;
@@ -20,6 +22,7 @@ public class FullUserInfoRepresentation {
         this.firstName = request.getFirstName();
         this.middleName= request.getMiddleName();
         this.lastName = request.getLastName();
+        this.address = request.getAddress();
         this.dateOfBirth = request.getDateOfBirth();
         this.phoneNumber = request.getPhoneNumber();
         this.gender = request.getGender();

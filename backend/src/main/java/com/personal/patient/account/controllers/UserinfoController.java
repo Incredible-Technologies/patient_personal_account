@@ -19,7 +19,7 @@ public class UserinfoController {
     private final UserinfoService userinfoService;
     private final UserSrevice userService;
 
-    @PostMapping("/userinfo/save")
+    @PostMapping("/save")
     public ResponseEntity<?> saveOrChangeUserinfo(@RequestBody UserInfoRepresentation userInfoRequest, Principal principal){
         User user = userService.getUserByPrincipal(principal);
         userinfoService.createOrChangeUserinfo(userInfoRequest, user);

@@ -35,6 +35,9 @@ public class Userinfo {
     @Column(name="phoneNumber")
     private String phoneNumber;
 
+    @Column(name="address")
+    private String address;
+
     @Enumerated(EnumType.STRING)
     private Gender gender;
 }
