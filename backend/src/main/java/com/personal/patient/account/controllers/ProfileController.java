@@ -26,7 +26,7 @@ public class ProfileController {
     }
 
 
-    @PostMapping("/save")
+    @PostMapping("")
     public ResponseEntity<?> saveOrChangeProfile(@RequestBody ProfileRepresentation profileRequest, Principal principal){
         User user = userService.getUserByPrincipal(principal);
         profileService.createOrChangeProfile(profileRequest, user);
