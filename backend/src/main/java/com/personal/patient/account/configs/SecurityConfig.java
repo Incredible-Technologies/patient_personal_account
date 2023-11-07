@@ -33,7 +33,6 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/secured").authenticated()
                 .antMatchers("/info").authenticated()
-                .antMatchers("/profile/save").authenticated()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
