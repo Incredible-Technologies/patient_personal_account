@@ -1,6 +1,6 @@
 package com.personal.patient.account.configs;
 
-import com.personal.patient.account.service.UserSevice;
+import com.personal.patient.account.service.UserSrevice;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
-    private final UserSevice userSevice;
+    private final UserSrevice userService;
     private final JwtRequestFilter jwtRequestFilter;
 
     private final PasswordEncoder passwordEncoder;
@@ -33,6 +33,7 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/secured").authenticated()
                 .antMatchers("/info").authenticated()
+                .antMatchers("/profile").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()
@@ -48,7 +49,7 @@ public class SecurityConfig {
     public DaoAuthenticationProvider daoAuthenticationProvider(){
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
-        daoAuthenticationProvider.setUserDetailsService(userSevice);
+        daoAuthenticationProvider.setUserDetailsService(userService);
         return daoAuthenticationProvider;
     }
 

@@ -1,6 +1,7 @@
 package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.User;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.RegistrationUser;
 import com.personal.patient.account.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -12,13 +13,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserSevice implements UserDetailsService {
+public class UserSrevice implements UserDetailsService {
     private final UserRepository userRepository;
 
     private final RoleService roleService;
@@ -50,5 +52,10 @@ public class UserSevice implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         user.setRoles(Set.of(roleService.getUserRole()));
         return userRepository.save(user);
+    }
+
+    public User getUserByPrincipal(Principal principal) {
+        if (principal == null) throw new NotFoundException("user with such principal not found :" + principal);
+        return userRepository.findByEmail(principal.getName()).orElseThrow(()-> new NotFoundException("user with such email not found :" + principal.getName()));
     }
 }

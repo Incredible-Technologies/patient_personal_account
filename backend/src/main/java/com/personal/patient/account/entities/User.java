@@ -28,4 +28,15 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
     private Collection<Role> roles;
+
+    @OneToOne(
+            mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private Profile profile;
+
+    @Override
+    public String toString() {
+        return "User";
+    }
 }
