@@ -1,1 +1,241 @@
 /* You can add global styles to this file, and also import other style files */
+@import "styles/_variables.scss";
+
+a {
+  text-decoration: none; // Removes the underline from links
+
+  &:hover {
+    text-decoration: underline; // Adds underline on hover for better UX
+  }
+}
+
+body.light-theme {
+  background-image: $light-primary;
+  color: $light-text;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $light-heading;
+  }
+
+  p {
+    color: $light-paragraph;
+  }
+
+  a {
+    color: $light-heading;
+    text-decoration: none;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: $light-button-bg;
+      text-decoration: none;
+    }
+  }
+
+  button {
+    background-color: $light-button-bg;
+    color: $light-button-text;
+  }
+  
+}
+
+body.dark-theme {
+  background-image: $dark-primary;
+  color: $dark-text;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: $dark-heading;
+  }
+
+  p {
+    color: $dark-paragraph;
+  }
+
+  a {
+    color: $dark-heading;
+    text-decoration: none;
+    -webkit-transition: 0.3s all ease;
+    -o-transition: 0.3s all ease;
+    transition: 0.3s all ease;
+
+    &:hover {
+      color: $dark-button-bg;
+      text-decoration: none;
+    }
+  }
+
+  button {
+    background-color: $dark-button-bg;
+    color: $dark-button-text;
+  }
+
+  
+}
+
+.theme-toggle {
+  position: fixed;
+  margin: 10px;
+  padding: 10px;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 1000; // to ensure it's above other elements
+}
+
+.theme-toggle img {
+  width: 30px;
+  height: 30px;
+}
+
+
+
+//Divider
+.custom-shape-divider-bottom-1667156080 {
+  //position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1667156080 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 29px;
+}
+
+.custom-shape-divider-bottom-1667156080 .shape-fill {
+  fill: $dark-button-bg
+}
+
+
+
+.custom-shape-divider-top-1667156508 {
+  //position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1667156508 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 29px;
+}
+
+.custom-shape-divider-top-1667156508 .shape-fill {
+  fill: $dark-button-bg
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  background: $dark-button-bg
+}
+
+/* Light Mode Icon Colors */
+body.light-theme .card .fa-heartbeat {
+  color: $light-icon-bloodpressure;
+}
+
+body.light-theme .card .fa-heart {
+  color: $light-icon-pulse;
+}
+
+body.light-theme .card .fa-tint {
+  color: $light-icon-bloodsugar;
+}
+
+body.light-theme .card .fa-thermometer-half {
+  color: $light-icon-temperature;
+}
+
+/* Dark Mode Icon Colors */
+body.dark-theme .card .fa-heartbeat {
+  color: $dark-icon-bloodpressure;
+}
+
+body.dark-theme .card .fa-heart {
+  color: $dark-icon-pulse;
+}
+
+body.dark-theme .card .fa-tint {
+  color: $dark-icon-bloodsugar;
+}
+
+body.dark-theme .card .fa-thermometer-half {
+  color: $dark-icon-temperature;
+}
+
+/* Card Hover Animation */
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Adjusting the layout for the cards to appear two on the first line and two on the second line for tablets */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .info-cards {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    flex: 0 0 48%; // This will make the cards take up almost half the width, with a little space in between
+    margin: 1%; // This will add a little space between the cards
+  }
+}
+
+
+  /* Light Mode Icon Colors */
+  body.light-theme table th .fas {
+    color: $light-icon-table;
+  }
+  
+  /* Dark Mode Icon Colors */
+  body.dark-theme table th .fas {
+    color: $dark-icon-table;
+  }
+
+  /* Dark Mode Styles for Tabs */
+body.dark-theme .tabs button {
+  background-color: rgba(255, 255, 255, 0.1); // Lighter background for dark mode
+  color: $dark-text; // Lighter text color for dark mode
+}
+
+body.dark-theme .tabs button.active {
+  background-color: #444; // Darker background for active tab in dark mode
+  color: $dark-text; // White text color for active tab in dark mode
+}
+

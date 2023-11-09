@@ -1,0 +1,72 @@
+@import "../../../../styles.scss";
+
+.fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  transition: 0.3s ease-in-out;
+}
+
+.nofixed {
+  position: static;
+  top: -50px;
+  transition: 0.3s ease-in-out;
+}
+
+.navbar {
+  backdrop-filter: blur(10px);
+  background-color: rgba(12, 19, 151, 0.1);
+  border-radius: 5px;
+
+  &.navbar-light {
+    background-color: $light-primary !important;
+
+    .navbar-toggler-icon {
+      background-color: $light-heading !important;
+    }
+  }
+
+  &.navbar-dark {
+    background-color: $dark-primary !important;
+
+    .navbar-toggler-icon {
+      background-color: $dark-text !important; // Adjusted to use the light text color for dark mode
+    }
+  }
+}
+
+.logo {
+  cursor: pointer;
+}
+
+.navbar-toggler {
+  cursor: pointer;
+  margin-right: 5px;
+  outline: none;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.nav-link {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+
+
+  @media (min-width: 768px) {
+    margin: 0;
+  }
+}
+
+
+
+.nav-link:focus {
+  color: #4589d3;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}

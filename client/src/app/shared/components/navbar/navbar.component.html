@@ -1,0 +1,61 @@
+
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css" rel="stylesheet" />
+
+<header>
+  <nav class="navbar navbar-expand-sm navbar-toggleable-sm box-shadow mb-0" (scroll)="onscroll()" [ngClass]="navbarfixed?'fixed':'nofixed'">
+    <div class="container">
+      <a [routerLink]="['/']" class="navbar-brand">
+        <img width="40" height="40" alt="logo" class="logo me-2" src="https://res.cloudinary.com/sputnik-tech-mupa/image/upload/v1697803445/lichnikabinetpatsienta/oibjep3dkofj4kppwocl.png" />
+      </a>
+      
+      <button class="navbar-toggler mb-3" type="button" data-toggle="collapse" style="background-color: transparent;" data-target=".navbar-collapse" aria-label="Toggle navigation" [attr.aria-expanded]="isExpanded" (click)="toggle()">
+        <lottie-player src="https://assets8.lottiefiles.com/temp/lf20_7QqLAf.json" background="transparent" speed="1" style="width: 40px; height: 40px;" loop autoplay></lottie-player>
+      </button>
+      
+      <div class="navbar-collapse collapse d-sm-inline-flex justify-content-end" [ngClass]="{ show: isExpanded }">
+        <ul class="navbar-nav flex-grow">
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/']">Профиль</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/electronic-medical-card']">Электронная карта</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/appointment']">Запись на прием</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/appointment']">Запись на прием</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/login-reg']">Вход / Регистраций</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/chat']" title="Чат с консультантом">
+                <i class="fas fa-comments"></i>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/notifications']" title="Уведомления">
+                <i class="fas fa-bell"></i>
+            </a>
+        </li>
+        
+          <!-- Additional Ideas -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/queue-status']">Статус в очереди</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/vaccination-journal']">Журнал прививок</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/government-services']">Связь с госуслугами</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/e-prescriptions']">Электронные рецепты</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>

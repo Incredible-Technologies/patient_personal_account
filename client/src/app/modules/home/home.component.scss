@@ -1,0 +1,190 @@
+@import "../../../styles.scss";
+
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.banner {
+  box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
+    0 0 10px rgba(131, 176, 235, 0.1); // Enhanced shadow
+  border: 1px solid $dark-button-bg;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user-name {
+  color: #007bff; /* Example color */
+  font-weight: bold;
+}
+
+.banner-content {
+  flex: 1;
+  text-align: center;
+}
+
+.banner-content i {
+  margin-bottom: 10px; /* Space between the icon and the heading */
+  color: #007bff; /* Color of the icon */
+}
+
+.banner-image {
+  flex-basis: 30%; /* Adjust as needed */
+  padding-left: 20px; /* Space between text and image */
+}
+
+.banner-image img {
+  max-width: 100%;
+  border-radius: 10px; /* Optional: to make the image corners rounded */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .banner {
+    flex-direction: column;
+  }
+
+  .banner-content {
+    margin-bottom: 20px;
+  }
+
+  .banner-image {
+    flex-basis: 100%;
+    padding-left: 0;
+  }
+}
+
+// CARD STYLING
+.info-cards {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  flex: 1;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid $dark-button-bg;
+  background-color: transparent;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Animation on hover */
+}
+
+.table-card {
+  border: 1px solid #007bff;
+  //background-color: rgba(255, 255, 255, 0.1); // Transparent background
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.medication-table,
+.appointments-table,
+.reports-table {
+  margin-top: 20px;
+}
+
+table {
+  width: 100%;
+  border-collapse: separate; // Change to separate
+  border-spacing: 0; // Add this to ensure there's no spacing between cells
+  margin-top: 10px;
+}
+
+table th,
+table td {
+  padding: 12px 10px; // Increased padding for better spacing
+  text-align: left;
+  position: relative; // To position the pseudo-element
+}
+
+table tr:not(:last-child) th,
+table tr:not(:last-child) td {
+  border-bottom: 1px solid rgba(224, 224, 224, 0.5); // Lighter and semi-transparent border
+}
+
+table th {
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.1
+  ); // A very light blue background for headers
+  border-radius: 10px; // Rounded corners for the top
+}
+
+.tabs {
+  display: flex;
+  margin-bottom: 10px;
+  border-radius: 10px; // Added corner radius for the container
+  overflow: hidden; // Ensures inner buttons conform to the container's border-radius
+}
+
+.tabs button {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.1
+  ); // Light blue background for better visibility
+  transition: background-color 0.3s ease;
+  border-radius: 5px; // Corner radius for individual buttons
+  color: #007bff; // Blue text color for better visibility
+}
+
+.tabs button.active {
+  background-color: $dark-button-bg;
+  color: $dark-text; // Darker text color for active tab
+}
+
+
+
+/* General Action Icon Styles */
+.action-icon {
+  font-size: 20px; // Adjust as needed
+  cursor: pointer;
+  margin-right: 10px; // Space between icons
+  transition: transform 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1); // Slight enlargement on hover
+  }
+}
+
+/* Download Action Icon Styles */
+.download-icon {
+  color: #007bff; // Blue color for the download icon
+
+  &:hover {
+    color: #0056b3; // Darker blue on hover
+  }
+}
+
+/* Delete Action Icon Styles */
+.delete-icon {
+  color: #dc3545; // Red color for the delete icon
+
+  &:hover {
+    color: #b21f2d; // Darker red on hover
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .info-cards {
+    flex-direction: column;
+  }
+}

@@ -1,7 +1,6 @@
 package com.personal.patient.account.entities;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.ToString;
 
@@ -33,12 +32,11 @@ public class User {
     )
     private Collection<Role> roles;
 
-    @JsonIgnore
     @OneToOne(
             mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private Userinfo userInfo;
+    private Profile profile;
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<ResultCard> results = new ArrayList<>();

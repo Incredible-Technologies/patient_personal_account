@@ -1,0 +1,42 @@
+// Light Theme
+$light-primary: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 74%);
+$light-secondary: #f5f5f5;
+$light-text: #333333;
+$light-heading: #222222;
+$light-paragraph: #555555;
+$light-button-bg: #007BFF;
+$light-button-text: #ffffff;
+
+// Dark Theme
+$dark-primary: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+$dark-secondary: #444444;
+$dark-text: #ffffff;
+$dark-heading: #dddddd;
+$dark-paragraph: #bbbbbb;
+$dark-button-bg: #007BFF;
+$dark-button-text: #333333;
+
+// Media Queries
+$mobile: 576px;
+$tablet: 768px;
+$desktop: 992px;
+$large-desktop: 1200px;
+$navbar-breakpoint: 1024px;
+
+// Add these new variables for the icon colors
+$light-icon-bloodpressure: #FF4136; // Vibrant Red
+$light-icon-pulse: #FF80CC; // Deep Pink
+$light-icon-bloodsugar: #0074D9; // Bright Blue
+$light-icon-temperature: #FF851B; // Warm Orange
+
+$dark-icon-bloodpressure: #FF6F69; // Lighter Red for Dark Mode
+$dark-icon-pulse: #FFA6D9; // Lighter Pink for Dark Mode
+$dark-icon-bloodsugar: #4AA4FF; // Lighter Blue for Dark Mode
+$dark-icon-temperature: #FFA366; // Lighter Orange for Dark Mode
+
+
+// Light Theme
+$light-icon-table: #007BFF;
+
+// Dark Theme
+$dark-icon-table: #007BFF;

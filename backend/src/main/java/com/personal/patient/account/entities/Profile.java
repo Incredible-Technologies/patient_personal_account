@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 @Data
-public class Userinfo {
+public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
@@ -34,6 +34,9 @@ public class Userinfo {
 
     @Column(name="phoneNumber")
     private String phoneNumber;
+
+    @Column(name="address")
+    private String address;
 
     @Enumerated(EnumType.STRING)
     private Gender gender;

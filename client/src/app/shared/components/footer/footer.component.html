@@ -1,0 +1,72 @@
+<link
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css"
+  rel="stylesheet"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+/>
+<footer class="footer-16371">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-9 text-center">
+        <div class="footer-site-logo mb-4">
+          <a href="#">Личный кабинет пациента</a>
+        </div>
+        <ul class="list-unstyled nav-links mb-5">
+          <li><a [routerLink]="['/profile']">Профиль</a></li>
+          <li><a [routerLink]="['/electronic-medical-card']">Электронная карта</a></li>
+          <li><a [routerLink]="['/appointment']">Запись на прием</a></li>
+          <li>
+            <a [routerLink]="['/chat']" title="Чат с консультантом">
+              <i class="fas fa-comments"></i>
+            </a>
+          </li>
+          <li>
+            <a [routerLink]="['/notifications']" title="Уведомления">
+              <i class="fas fa-bell"></i>
+            </a>
+          </li>
+        </ul>
+
+        <div class="social mb-4">
+          <h3>Оставайтесь на связи</h3>
+          <ul class="list-unstyled">
+            <li class="teleg">
+              <a href="#" title="Telegram"
+                ><i class="fab fa-2x fa-telegram"></i
+              ></a>
+            </li>
+            <li class="vk">
+              <a href="#" title="VK"><i class="fab fa-2x fa-vk"></i></a>
+            </li>
+            <li class="in">
+              <a href="#" title="Instagram"
+                ><i class="fab fa-2x fa-instagram"></i
+              ></a>
+            </li>
+            <li class="fb">
+              <a href="#" title="Facebook"
+                ><i class="fab fa-2x fa-facebook-f"></i
+              ></a>
+            </li>
+            <li class="tw">
+              <a href="#" title="X(Twitter)"
+                ><i class="fab fa-2x fa-x-twitter"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="copyright">
+          <p class="mb-0">
+            <small
+              >&copy; {{ currentYear }} Личный кабинет пациента. Все права
+              защищены.</small
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

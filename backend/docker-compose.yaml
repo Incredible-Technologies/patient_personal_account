@@ -9,7 +9,7 @@ services:
     ports:
       - "5432:5432"
   app:
-    build: .
+    image: ${SPRING_APP_IMAGE}
     ports:
       - "8080:8080"
     depends_on:
