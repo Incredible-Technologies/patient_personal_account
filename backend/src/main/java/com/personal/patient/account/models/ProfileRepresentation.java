@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 
 @Data
 @RequiredArgsConstructor
+
 public class ProfileRepresentation {
     private String firstName;
 
@@ -36,6 +37,6 @@ public class ProfileRepresentation {
 
         this.phoneNumber = userinfo.getPhoneNumber();
 
-        this.gender = userinfo.getFirstName();
+        this.gender = userinfo.getGender().getValue();
     }
 }

@@ -2,9 +2,12 @@ package com.personal.patient.account.entities;
 
 
 import lombok.Data;
+import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 @Data
@@ -34,6 +37,9 @@ public class User {
             fetch = FetchType.LAZY
     )
     private Profile profile;
+
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    private List<ResultCard> results = new ArrayList<>();
 
     @Override
     public String toString() {

@@ -20,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class UserSrevice implements UserDetailsService {
+public class UserService implements UserDetailsService {
     private final UserRepository userRepository;
 
     private final RoleService roleService;
@@ -57,5 +57,9 @@ public class UserSrevice implements UserDetailsService {
     public User getUserByPrincipal(Principal principal) {
         if (principal == null) throw new NotFoundException("user with such principal not found :" + principal);
         return userRepository.findByEmail(principal.getName()).orElseThrow(()-> new NotFoundException("user with such email not found :" + principal.getName()));
+    }
+
+    public User getUserByEmail(String email){
+        return userRepository.findByEmail(email).orElseThrow(() -> new NotFoundException("user with email " + email + " not found"));
     }
 }

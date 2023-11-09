@@ -1,6 +1,6 @@
 package com.personal.patient.account.configs;
 
-import com.personal.patient.account.service.UserSrevice;
+import com.personal.patient.account.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @RequiredArgsConstructor
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig {
-    private final UserSrevice userService;
+    private final UserService userService;
     private final JwtRequestFilter jwtRequestFilter;
 
     private final PasswordEncoder passwordEncoder;
@@ -33,6 +33,11 @@ public class SecurityConfig {
                 .authorizeRequests()
                 .antMatchers("/secured").authenticated()
                 .antMatchers("/info").authenticated()
+                .antMatchers("/userinfo/save").authenticated()
+                .antMatchers("/all-cards").authenticated()
+                .antMatchers("/all-not-done-cards").authenticated()
+                .antMatchers("/all-done-cards").authenticated()
+                .antMatchers("/files/result-file/**").authenticated()
                 .antMatchers("/profile").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
