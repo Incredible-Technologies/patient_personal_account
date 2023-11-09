@@ -5,7 +5,7 @@ import com.personal.patient.account.entities.Profile;
 import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.ProfileRepresentation;
 import com.personal.patient.account.models.FullProfileRepresentation;
-import com.personal.patient.account.service.UserSrevice;
+import com.personal.patient.account.service.UserService;
 import com.personal.patient.account.service.ProfileService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -19,7 +19,7 @@ import java.security.Principal;
 @RequestMapping("/profile")
 public class ProfileController {
     private final ProfileService profileService;
-    private final UserSrevice userService;
+    private final UserService userService;
     @ExceptionHandler(NotFoundException.class)
     protected ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());

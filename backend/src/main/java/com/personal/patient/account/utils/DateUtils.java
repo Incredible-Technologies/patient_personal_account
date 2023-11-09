@@ -20,8 +20,4 @@ public class DateUtils {
         }
         return date;
     }
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> main
