@@ -36,6 +36,7 @@ public class SecurityConfig {
                 .cors()
                 .and()
                 .authorizeRequests()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll() // Permit OPTIONS preflight requests
                 .antMatchers("/secured").authenticated()
                 .antMatchers("/info").authenticated()
                 .antMatchers("/userinfo/save").authenticated()
