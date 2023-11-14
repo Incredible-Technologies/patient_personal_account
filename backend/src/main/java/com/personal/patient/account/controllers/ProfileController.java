@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
-import org.springframework.web.bind.annotation.CrossOrigin;
-
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/profile")

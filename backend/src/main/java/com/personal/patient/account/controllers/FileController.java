@@ -15,9 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.ByteArrayInputStream;
 import java.security.Principal;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/files")

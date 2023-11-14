@@ -13,9 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/result-card")
