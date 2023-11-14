@@ -3,7 +3,8 @@ name: Deploy to AWS CI/CD with Docker
 on:
   push:
     branches:
-      - main
+      #- main
+      - Backend-Cors-Bug-Fix
       # test push
 
 jobs:
