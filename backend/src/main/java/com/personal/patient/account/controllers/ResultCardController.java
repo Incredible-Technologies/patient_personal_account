@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = {"http://localhost:4200", "https://lkpatsienta.tech"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/result-card")

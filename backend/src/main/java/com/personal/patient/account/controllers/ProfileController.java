@@ -14,6 +14,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = {"http://localhost:4200", "https://lkpatsienta.tech"})
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/profile")

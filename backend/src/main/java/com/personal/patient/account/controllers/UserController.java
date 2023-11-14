@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+
+@CrossOrigin(origins = {"http://localhost:4200", "https://lkpatsienta.tech"})
 @RestController
 @RequiredArgsConstructor
 public class UserController {
