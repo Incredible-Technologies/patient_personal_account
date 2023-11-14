@@ -17,7 +17,7 @@ import java.io.ByteArrayInputStream;
 import java.security.Principal;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://lkpatsienta.tech"})
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/files")

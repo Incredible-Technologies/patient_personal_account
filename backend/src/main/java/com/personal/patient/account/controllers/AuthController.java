@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = {"http://localhost:4200", "https://lkpatsienta.tech"})
+@CrossOrigin
 @RestController
 @RequiredArgsConstructor
 public class AuthController {
