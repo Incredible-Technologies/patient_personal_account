@@ -29,6 +29,7 @@ public class SecurityConfig {
         http
                 .csrf().disable()
                 .cors()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/secured").authenticated()
                 .antMatchers("/info").authenticated()
