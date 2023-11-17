@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -8,7 +10,8 @@ import { Component } from '@angular/core';
 export class FooterComponent {
   currentYear: number = new Date().getFullYear();
 
-  constructor() { }
+  constructor(public authService: AuthService,
+    private router: Router,) { }
 
   ngOnInit(): void {
   }

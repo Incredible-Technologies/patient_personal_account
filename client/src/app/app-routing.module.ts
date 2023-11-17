@@ -7,11 +7,14 @@ import { ChatComponent } from './components/chat/chat.component';
 import { AuthGuard } from './core/guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent, pathMatch: 'full' },
-  { path: 'login-reg', component: LoginRegisterComponent, canActivate: [AuthGuard] },
-  {path: 'electronic-medical-card', component: MedicalCardComponent},
-  {path: 'chat', component: ChatComponent}
+  { path: '', redirectTo: '/login-reg', pathMatch: 'full' },
+  { path: 'login-reg', component: LoginRegisterComponent },
+  { path: 'profile', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'electronic-medical-card', component: MedicalCardComponent, canActivate: [AuthGuard] },
+  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  // ... other routes ...
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes, {

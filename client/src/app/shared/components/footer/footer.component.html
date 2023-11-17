@@ -11,19 +11,19 @@
     <div class="row justify-content-center">
       <div class="col-md-9 text-center">
         <div class="footer-site-logo mb-4">
-          <a href="#">Личный кабинет пациента</a>
+          <a *ngIf="authService.isLoggedIn()" href="#">Личный кабинет пациента</a>
         </div>
         <ul class="list-unstyled nav-links mb-5">
-          <li><a [routerLink]="['/profile']">Профиль</a></li>
-          <li><a [routerLink]="['/electronic-medical-card']">Электронная карта</a></li>
-          <li><a [routerLink]="['/appointment']">Запись на прием</a></li>
+          <li><a [routerLink]="['/profile']" *ngIf="authService.isLoggedIn()">Профиль</a></li>
+          <li><a [routerLink]="['/electronic-medical-card']" *ngIf="authService.isLoggedIn()">Электронная карта</a></li>
+          <li><a [routerLink]="['/appointment']" *ngIf="authService.isLoggedIn()">Запись на прием</a></li>
           <li>
-            <a [routerLink]="['/chat']" title="Чат с консультантом">
+            <a [routerLink]="['/chat']" *ngIf="authService.isLoggedIn()" title="Чат с консультантом">
               <i class="fas fa-comments"></i>
             </a>
           </li>
           <li>
-            <a [routerLink]="['/notifications']" title="Уведомления">
+            <a [routerLink]="['/notifications']" *ngIf="authService.isLoggedIn()" title="Уведомления">
               <i class="fas fa-bell"></i>
             </a>
           </li>

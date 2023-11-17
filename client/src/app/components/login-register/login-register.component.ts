@@ -52,7 +52,7 @@ export class LoginRegisterComponent implements OnInit {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           localStorage.setItem('authToken', response.token);
-          this.router.navigate(['/']); // Navigate to home
+          this.router.navigate(['/profile']); // Navigate to home
           this.toastr.success('Успешный вход в систему!'); // "Logged in successfully!" in Russian
         },
         error: (error) => {
@@ -62,13 +62,26 @@ export class LoginRegisterComponent implements OnInit {
       });
     }
   }
-  
+ 
+    
   onRegister() {
     if (this.registerForm.valid) {
       this.authService.register(this.registerForm.value).subscribe({
         next: (response) => {
-          this.router.navigate(['/']); // Navigate to home
-          this.toastr.success('Регистрация прошла успешно!'); // "Registered successfully!" in Russian
+          // After successful registration, log the user in
+          this.authService.login({
+            email: this.registerForm.value.email,
+            password: this.registerForm.value.password
+          }).subscribe({
+            next: (loginResponse) => {
+              localStorage.setItem('authToken', loginResponse.token);
+              this.router.navigate(['/profile']); // Navigate to home
+              this.toastr.success('Успешный вход в систему после регистрации!'); // "Successfully logged in after registration!" in Russian
+            },
+            error: (loginError) => {
+              // Handle login error here if needed
+            }
+          });
         },
         error: (error) => {
           this.registerErrorMessage = error;
@@ -77,5 +90,5 @@ export class LoginRegisterComponent implements OnInit {
       });
     }
   }
-    
+  
 }

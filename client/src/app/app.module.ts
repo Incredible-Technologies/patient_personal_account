@@ -35,7 +35,12 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      timeOut: 3000,
+      // other global options...
+    }),
     NgxSpinnerModule,
   ],
   providers: [
