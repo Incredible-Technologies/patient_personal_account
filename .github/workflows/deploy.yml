@@ -63,4 +63,4 @@ jobs:
         docker pull ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
         docker stop lichny-kabinet-patsienta-client || true
         docker rm lichny-kabinet-patsienta-client || true
-        docker run -d --restart unless-stopped --name lichny-kabinet-patsienta-client -p 8081:4000 ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
+        docker run -d --restart unless-stopped --name lichny-kabinet-patsienta-client -p 4000:4000 ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
