@@ -20,46 +20,6 @@
     </button>
   </div>
 
-  <!-- <div *ngIf="activeTab === 'login'" class="login-form">
-
-    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
-      
-    <div class="form-group">
-      <label for="loginEmail"><i style="color: #007BFF;" class="fa-solid fa-2x fa-envelope"></i></label>
-      <input type="email" id="loginEmail" formControlName="email" name="loginEmail" placeholder="Эл. адрес" />
-      <div *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)">
-        <div *ngIf="loginForm.get('email')?.errors?.['required']" class="error-message">Email is required.</div>
-        <div *ngIf="loginForm.get('email')?.errors?.['email']" class="error-message">Enter a valid email.</div>
-      </div>
-      
-    </div>
-
-    
-    <div class="form-group">
-      <label for="loginPassword"><i style="color: #007BFF;" class="fa-solid fa-2x fa-lock"></i></label>
-      <input type="password" id="loginPassword" formControlName="password" name="loginPassword" placeholder="Пароль" />
-    </div>
-
-    
-    <div class="form-actions">
-      <button type="submit" [disabled]="!loginForm.valid">Войти</button>
-      <a href="#" class="forgot-password">Забыли пароль?</a>
-    </div>
-
-    
-    <div *ngIf="loginErrorMessage" class="error-message">{{ loginErrorMessage }}</div>
-      <div class="social-login">
-        <p>или войдите с помощью</p>
-        <div class="social-icons">
-          <a href="#" style="color: #4C75A3;"><i class="fa-brands fa-2x fa-vk"></i></a>
-          <a href="#" style="color: #0088CC;"><i class="fa-brands fa-2x fa-telegram"></i></a>
-          <a href="#" style="color: #1877F2;"><i class="fa-brands fa-2x fa-facebook"></i></a>
-        </div>
-      </div>
-    </form>
-  </div> -->
-
-
   <div *ngIf="activeTab === 'login'" class="login-form">
     <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
       <!-- Email field with validation messages -->
@@ -68,8 +28,8 @@
         <div class="input-wrapper">
           <input type="email" id="loginEmail" formControlName="email" name="loginEmail" placeholder="Эл. адрес" />
           <div *ngIf="loginForm.get('email')?.errors && (loginForm.get('email')?.touched || loginForm.get('email')?.dirty)" class="error-message">
-            <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</div>
-            <div *ngIf="loginForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+            <div *ngIf="loginForm.get('email')?.errors?.['required']">Требуется электронная почта.</div>
+            <div *ngIf="loginForm.get('email')?.errors?.['email']">Введите действительный адрес электронной почты.</div>
           </div>
         </div>
       </div>
@@ -92,14 +52,14 @@
   
       <!-- Error messages and social login -->
       <div *ngIf="loginErrorMessage" class="error-message">{{ loginErrorMessage }}</div>
-      <div class="social-login">
+      <!-- <div class="social-login">
         <p>или войдите с помощью</p>
         <div class="social-icons">
           <a href="#" style="color: #4C75A3;"><i class="fa-brands fa-2x fa-vk"></i></a>
           <a href="#" style="color: #0088CC;"><i class="fa-brands fa-2x fa-telegram"></i></a>
           <a href="#" style="color: #1877F2;"><i class="fa-brands fa-2x fa-facebook"></i></a>
         </div>
-      </div>
+      </div> -->
     </form>
   </div>
 
@@ -112,8 +72,8 @@
         <div class="input-wrapper">
           <input type="email" id="registerEmail" formControlName="email" name="registerEmail" placeholder="Эл. адрес" />
           <div *ngIf="registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)" class="error-message">
-            <div *ngIf="registerForm.get('email')?.errors?.['required']">Email is required.</div>
-            <div *ngIf="registerForm.get('email')?.errors?.['email']">Enter a valid email.</div>
+            <div *ngIf="registerForm.get('email')?.errors?.['required']">Требуется электронная почта.</div>
+            <div *ngIf="registerForm.get('email')?.errors?.['email']">Введите действительный адрес электронной почты.</div>
           </div>
         </div>
       </div>
@@ -124,7 +84,7 @@
         <div class="input-wrapper">
           <input type="password" id="registerPassword" formControlName="password" name="registerPassword" placeholder="Пароль" />
         <div *ngIf="registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
-          <div *ngIf="registerForm.get('password')?.errors?.['required']" class="error-message">Password is required.</div>
+          <div *ngIf="registerForm.get('password')?.errors?.['required']" class="error-message">Требуется пароль.</div>
           <!-- Add any additional password validations here, if applicable -->
         </div>
         </div>
@@ -136,8 +96,8 @@
         <div class="input-wrapper">
           <input type="password" id="registerConfirmPassword" formControlName="confirmPassword" name="registerConfirmPassword" placeholder="Подтвердите пароль" />
           <div *ngIf="registerForm.get('confirmPassword')?.errors && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)">
-            <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']" class="error-message">Confirmation password is required.</div>
-            <div *ngIf="registerForm.get('confirmPassword')?.errors?.['confirmPasswordValidator']" class="error-message">Passwords must match.</div>
+            <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']" class="error-message">Требуется пароль для подтверждения.</div>
+            <div *ngIf="registerForm.get('confirmPassword')?.errors?.['confirmPasswordValidator']" class="error-message">Пароли должны совпадать.</div>
           </div>
         </div>
       </div>
@@ -149,67 +109,17 @@
       <div *ngIf="registerErrorMessage" class="error-message">{{ registerErrorMessage }}</div>
   
       <!-- Social register links -->
-      <div class="social-register">
+      <!-- <div class="social-register">
         <p>или зарегистрируйтесь с помощью</p>
         <div class="social-icons">
           <a href="#" style="color: #4C75A3;"><i class="fa-brands fa-2x fa-vk"></i></a>
           <a href="#" style="color: #0088CC;"><i class="fa-brands fa-2x fa-telegram"></i></a>
           <a href="#" style="color: #1877F2;"><i class="fa-brands fa-2x fa-facebook"></i></a>
         </div>
-      </div>
+      </div> -->
     </form>
   </div>
 
-
-  <!-- <div *ngIf="activeTab === 'register'" class="register-form">
-    <form [formGroup]="registerForm" (ngSubmit)="onRegister()">
-      
-      <div class="form-group">
-        <label for="registerEmail"><i style="color: #007BFF;" class="fa-solid fa-2x fa-envelope"></i></label>
-        <input type="email" id="registerEmail" formControlName="email" name="registerEmail" placeholder="Эл. адрес" />
-        <div *ngIf="registerForm.get('email')?.errors && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)">
-          <div *ngIf="registerForm.get('email')?.errors?.['required']" class="error-message">Email is required.</div>
-          <div *ngIf="registerForm.get('email')?.errors?.['email']" class="error-message">Enter a valid email.</div>
-        </div>
-      </div>
-  
-      
-      <div class="form-group">
-        <label for="registerPassword"><i style="color: #007BFF;" class="fa-solid fa-2x fa-unlock"></i></label>
-        <input type="password" id="registerPassword" formControlName="password" name="registerPassword" placeholder="Пароль" />
-        <div *ngIf="registerForm.get('password')?.errors && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)">
-          <div *ngIf="registerForm.get('password')?.errors?.['required']" class="error-message">Password is required.</div>
-          <
-        </div>
-      </div>
-  
-      
-      <div class="form-group">
-        <label for="registerConfirmPassword"><i style="color: #007BFF;" class="fa-solid fa-2x fa-lock"></i></label>
-        <input type="password" id="registerConfirmPassword" formControlName="confirmPassword" name="registerConfirmPassword" placeholder="Подтвердите пароль" />
-        <div *ngIf="registerForm.get('confirmPassword')?.errors && (registerForm.get('confirmPassword')?.touched || registerForm.get('confirmPassword')?.dirty)">
-          <div *ngIf="registerForm.get('confirmPassword')?.errors?.['required']" class="error-message">Confirmation password is required.</div>
-          <div *ngIf="registerForm.get('confirmPassword')?.errors?.['confirmPasswordValidator']" class="error-message">Passwords must match.</div>
-        </div>
-      </div>
-  
-      
-      <button type="submit" [disabled]="!registerForm.valid">Зарегистрироваться</button>
-  
-      
-      <div *ngIf="registerErrorMessage" class="error-message">{{ registerErrorMessage }}</div>
-  
-      
-      <div class="social-register">
-        <p>или зарегистрируйтесь с помощью</p>
-        <div class="social-icons">
-          <a href="#" style="color: #4C75A3;"><i class="fa-brands fa-2x fa-vk"></i></a>
-          <a href="#" style="color: #0088CC;"><i class="fa-brands fa-2x fa-telegram"></i></a>
-          <a href="#" style="color: #1877F2;"><i class="fa-brands fa-2x fa-facebook"></i></a>
-        </div>
-      </div>
-    </form>
-  </div> -->
   
 </div>
 
