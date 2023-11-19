@@ -20,7 +20,7 @@ WORKDIR /app
 
 COPY --from=build /app/dist ./dist
 
-EXPOSE 8080
+EXPOSE 4000
 
 CMD [ "node", "dist/client/server/main.js" ]
 
