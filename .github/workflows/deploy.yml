@@ -39,12 +39,11 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
 
-  deploy:
-    needs: [build_and_push_spring, build_and_push_angular]
-    runs-on: [self-hosted, aws-ec2]
+  deploy_spring:
+    needs: build_and_push_spring
+    runs-on: [self-hosted, spring-aws-ec2]
     env:
         SPRING_APP_IMAGE: ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -55,6 +54,13 @@ jobs:
         echo "SPRING_APP_IMAGE=${SPRING_APP_IMAGE}" > .env
         docker-compose down
         docker-compose up -d
+
+  deploy_angular:
+    needs: build_and_push_angular
+    runs-on: [self-hosted, aws-ec2]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Deploy Angular Universal application
       run: |
