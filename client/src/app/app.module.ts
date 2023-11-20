@@ -9,6 +9,14 @@ import { HomeComponent } from './modules/home/home.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { MedicalCardComponent } from './components/medical-card/medical-card.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -17,15 +25,29 @@ import { ChatComponent } from './components/chat/chat.component';
     HomeComponent,
     LoginRegisterComponent,
     MedicalCardComponent,
-    ChatComponent
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     CoreModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-center',
+      preventDuplicates: true,
+      timeOut: 3000,
+      // other global options...
+    }),
+    NgxSpinnerModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

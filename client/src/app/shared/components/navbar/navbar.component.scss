@@ -70,3 +70,43 @@
 .nav-link:hover {
   color: #007bff;
 }
+
+
+.nav-item {
+  display: flex;
+  align-items: center;
+
+  a, button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    padding: 0;
+    outline: inherit;
+    border-radius: 10px;
+    font-size: 1.1rem;
+
+    &:hover {
+      color: #007bff;
+    }
+  }
+}
+
+.disabled-link {
+  pointer-events: none; /* Prevents clicking */
+  color: grey; /* Visual indication of being disabled */
+  cursor: default;
+}
+
+
+// Add a media query for desktop screens
+@media (min-width: 768px) {
+  .nav-item {
+    margin-right: 1rem; // Adjust the right margin as needed
+
+    &:last-child {
+      margin-right: 0; // Remove margin for the last item
+    }
+  }
+}

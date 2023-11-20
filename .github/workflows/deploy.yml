@@ -3,8 +3,8 @@ name: Deploy to AWS CI/CD with Docker
 on:
   push:
     branches:
+      #- Angular-auth-implementation
       - main
-      # test push
 
 jobs:
   build_and_push_spring:
@@ -39,22 +39,32 @@ jobs:
         docker build -t ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest .
         docker push ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
 
-  deploy:
-    needs: [build_and_push_spring, build_and_push_angular]
-    runs-on: [self-hosted, aws-ec2]
+  deploy_spring:
+    needs: build_and_push_spring
+    runs-on: [self-hosted, spring-aws-ec2]
     env:
         SPRING_APP_IMAGE: ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-backend:latest
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+
+    - name: Docker login
+      run: |
+        echo ${{ secrets.DOCKER_PASSWORD }} | sudo docker login -u ${{ secrets.DOCKER_USERNAME }} --password-stdin
 
     - name: Deploy Spring Boot application
       run: |
         cd backend
         echo "SPRING_APP_IMAGE=${SPRING_APP_IMAGE}" > .env
-        docker-compose down
-        docker-compose up -d
+        sudo docker-compose down
+        sudo docker-compose up -d
+
+  deploy_angular:
+    needs: build_and_push_angular
+    runs-on: [self-hosted, aws-ec2]
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
 
     - name: Deploy Angular Universal application
       run: |
@@ -64,5 +74,3 @@ jobs:
         docker stop lichny-kabinet-patsienta-client || true
         docker rm lichny-kabinet-patsienta-client || true
         docker run -d --restart unless-stopped --name lichny-kabinet-patsienta-client -p 80:4000 ${{ secrets.DOCKER_USERNAME }}/lichny-kabinet-patsienta-client:latest
-
-        # Test Runner
