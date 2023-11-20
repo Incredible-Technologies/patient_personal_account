@@ -3,8 +3,8 @@ name: Deploy to AWS CI/CD with Docker
 on:
   push:
     branches:
-      - Angular-auth-implementation
-      #- main
+      #- Angular-auth-implementation
+      - main
 
 jobs:
   build_and_push_spring:
