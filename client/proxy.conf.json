@@ -1,6 +1,6 @@
 {
     "/api": {
-      "target": "http://107.23.166.62:8080",
+      "target": "https://apilkpatsienta.tech",
       "secure": false,
       "logLevel": "debug",
       "changeOrigin": true,
