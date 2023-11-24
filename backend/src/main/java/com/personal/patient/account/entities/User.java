@@ -38,6 +38,12 @@ public class User {
     )
     private Profile profile;
 
+    @OneToOne(
+            mappedBy = "user", cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    private Snils snils;
+
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
     private List<ResultCard> results = new ArrayList<>();
 

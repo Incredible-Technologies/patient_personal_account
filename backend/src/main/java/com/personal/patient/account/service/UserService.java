@@ -48,7 +48,6 @@ public class UserService implements UserDetailsService {
     public User createNewUser(RegistrationUser registrationUser){
         User user = new User();
         user.setEmail(registrationUser.getEmail());
-        user.setEmail(registrationUser.getEmail());
         user.setPassword(passwordEncoder.encode(registrationUser.getPassword()));
         user.setRoles(Set.of(roleService.getUserRole()));
         return userRepository.save(user);
