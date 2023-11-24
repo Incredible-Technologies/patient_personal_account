@@ -14,7 +14,7 @@ import java.security.Principal;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/documents")
-public class DocumentsController {
+public class SnilsController {
 
     @ExceptionHandler(NotFoundException.class)
     protected ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
@@ -29,7 +29,12 @@ public class DocumentsController {
     private final SnilsService snilsService;
 
     @PostMapping("/snils")
-    public ResponseEntity<?> creatingSnil(@RequestBody CreatingSnilsResponse creatingSnilsResponse, Principal principal){
+    public ResponseEntity<?> creatingSnils(@RequestBody CreatingSnilsResponse creatingSnilsResponse, Principal principal){
         return ResponseEntity.ok(snilsService.createSnils(creatingSnilsResponse, principal));
+    }
+
+    @GetMapping("/snils")
+    public ResponseEntity<?> getSnils(Principal principal){
+        return ResponseEntity.ok(snilsService.getSnils(principal));
     }
 }

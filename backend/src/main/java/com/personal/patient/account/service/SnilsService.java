@@ -1,6 +1,7 @@
 package com.personal.patient.account.service;
 
 import com.personal.patient.account.entities.Snils;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.CreatingSnilsRequest;
 import com.personal.patient.account.models.CreatingSnilsResponse;
 import com.personal.patient.account.repositories.SnilsRepository;
@@ -24,4 +25,10 @@ public class SnilsService {
         snils = snilsRepository.save(snils);
         return new CreatingSnilsRequest(snils.getId(), snils.getNumber());
     };
+
+    public CreatingSnilsResponse getSnils(Principal principal){
+        Snils snils = snilsRepository.findByUser(userService.getUserByPrincipal(principal))
+                .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have snils"));
+        return new CreatingSnilsResponse(snils.getNumber());
+    }
 }
