@@ -37,4 +37,9 @@ public class SnilsController {
     public ResponseEntity<?> getSnils(Principal principal){
         return ResponseEntity.ok(snilsService.getSnils(principal));
     }
+
+    @PutMapping("/snils")
+    public ResponseEntity<?> changeSnils(@RequestBody CreatingSnilsResponse creatingSnilsResponse, Principal principal){
+        return ResponseEntity.ok(snilsService.changeSnils(creatingSnilsResponse,principal));
+    }
 }

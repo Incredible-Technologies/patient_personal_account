@@ -31,4 +31,12 @@ public class SnilsService {
                 .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have snils"));
         return new CreatingSnilsResponse(snils.getNumber());
     }
+
+    public CreatingSnilsResponse changeSnils(CreatingSnilsResponse creatingSnilsResponse, Principal principal){
+        Snils snils = snilsRepository.findByUser(userService.getUserByPrincipal(principal))
+                .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have snils"));
+        snils.setNumber(creatingSnilsResponse.getNumber());
+        snils = snilsRepository.save(snils);
+        return new CreatingSnilsResponse(snils.getNumber());
+    }
 }
