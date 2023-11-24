@@ -11,7 +11,12 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name="passport")
+@Table(
+        name="passport",
+        uniqueConstraints = {
+                @UniqueConstraint(columnNames = "user_id")
+        }
+)
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,11 +27,7 @@ public class Passport {
     private Long id;
 
     @Column(name="full_name")
-    private Long fullName;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private String fullName;
 
     @Enumerated(EnumType.STRING)
     private PassportGender passportGender;
@@ -56,9 +57,14 @@ public class Passport {
     @Column(name="issued_by")
     private String issuedBy;
 
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     @OneToOne(
             fetch = FetchType.LAZY, cascade = CascadeType.ALL,
             mappedBy = "passport"
     )
     private PassportFile passportFile;
+
 }
