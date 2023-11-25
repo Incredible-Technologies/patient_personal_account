@@ -2,6 +2,7 @@ package com.personal.patient.account.service;
 
 
 import com.personal.patient.account.entities.Passport;
+import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.CreatingPassportRequest;
 import com.personal.patient.account.models.CreatingPassportResponse;
 import com.personal.patient.account.models.enums.PassportGender;
@@ -43,19 +44,19 @@ public class PassportService {
         return new CreatingPassportRequest(passport);
     };
 
-    /*
-    public CreatingSnilsResponse getSnils(Principal principal){
-        Snils snils = snilsRepository.findByUser(userService.getUserByPrincipal(principal))
-                .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have snils"));
-        return new CreatingSnilsResponse(snils.getNumber());
+
+    public CreatingPassportRequest getPassport(Principal principal){
+        Passport passport = passportRepository.findByUser(userService.getUserByPrincipal(principal))
+                .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have passport"));
+        return new CreatingPassportRequest(passport);
     }
 
-    public CreatingSnilsResponse changeSnils(CreatingSnilsResponse creatingSnilsResponse, Principal principal){
-        Snils snils = snilsRepository.findByUser(userService.getUserByPrincipal(principal))
-                .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have snils"));
-        snils.setNumber(creatingSnilsResponse.getNumber());
-        snils = snilsRepository.save(snils);
-        return new CreatingSnilsResponse(snils.getNumber());
+    public CreatingPassportRequest changePassport(CreatingPassportResponse creatingPassportResponse, Principal principal){
+        Passport passport = passportRepository.findByUser(userService.getUserByPrincipal(principal))
+                .orElseThrow(()-> new NotFoundException("user with email " + principal.getName() + " did not have passport"));
+        fillPassport(passport, creatingPassportResponse, principal);
+        passport = passportRepository.save(passport);
+        return new CreatingPassportRequest(passport);
     }
-    */
+
 }

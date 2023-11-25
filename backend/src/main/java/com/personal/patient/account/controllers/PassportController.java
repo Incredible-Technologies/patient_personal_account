@@ -1,11 +1,8 @@
 package com.personal.patient.account.controllers;
 
 import com.personal.patient.account.exceptions.NotFoundException;
-import com.personal.patient.account.models.CreatingPassportRequest;
 import com.personal.patient.account.models.CreatingPassportResponse;
-import com.personal.patient.account.models.CreatingSnilsResponse;
 import com.personal.patient.account.service.PassportService;
-import com.personal.patient.account.service.SnilsService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -32,19 +29,17 @@ public class PassportController {
     private final PassportService passportService;
 
     @PostMapping("/passport")
-    public ResponseEntity<?> creatingSnils(@RequestBody CreatingPassportResponse creatingPassportResponse, Principal principal){
+    public ResponseEntity<?> creatingPassport(@RequestBody CreatingPassportResponse creatingPassportResponse, Principal principal){
         return ResponseEntity.ok(passportService.createPassport(creatingPassportResponse, principal));
     }
 
-    /*
-    @GetMapping("/snils")
-    public ResponseEntity<?> getSnils(Principal principal){
-        return ResponseEntity.ok(snilsService.getSnils(principal));
+    @GetMapping("/passport")
+    public ResponseEntity<?> getPassport(Principal principal){
+        return ResponseEntity.ok(passportService.getPassport(principal));
     }
 
-    @PutMapping("/snils")
-    public ResponseEntity<?> changeSnils(@RequestBody CreatingSnilsResponse creatingSnilsResponse, Principal principal){
-        return ResponseEntity.ok(snilsService.changeSnils(creatingSnilsResponse,principal));
+    @PutMapping("/passport")
+    public ResponseEntity<?> changePassport(@RequestBody CreatingPassportResponse creatingPassportResponse, Principal principal) {
+        return ResponseEntity.ok(passportService.changePassport(creatingPassportResponse, principal));
     }
-     */
 }
