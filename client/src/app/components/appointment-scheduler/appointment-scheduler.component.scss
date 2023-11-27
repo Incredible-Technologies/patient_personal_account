@@ -1,0 +1,95 @@
+@import "../../../styles.scss";
+
+.container {
+    background-color: transparent;
+    margin-top: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
+    0 0 10px rgba(131, 176, 235, 0.1); // Enhanced shadow
+    border: 1px solid $dark-button-bg;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.day-selected {
+    background-color: transparent;
+}
+
+.greeting {
+    display: flex;
+    justify-content: flex-start;
+    padding: 1rem;
+    font-size: large;
+}
+
+.dateToVisitContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    font-size: medium;
+}
+
+.datepickerButton {
+    border: 1px solid lemonchiffon;
+    border-radius: 1rem;
+}
+
+.selectors {
+display: flex;
+flex-direction: column;
+}
+
+.speciality {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.doctor {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.selectedDoctor {
+    color: goldenrod;
+}
+
+.doctorAvailabilityContainer {
+    display: grid;
+    grid-template-rows: 1fr 1fr 5fr;
+    row-gap: 0.5rem;
+    padding: 1rem;
+}
+
+.ticketsLeft {
+    color: rebeccapurple;
+}
+
+.buttonContainer {
+    padding: 1rem;
+}
+
+.submitButton {
+  flex: 1;
+  padding: 10px;
+  cursor: pointer;
+  border: none;
+  background-color: rgba(
+    0,
+    123,
+    255,
+    0.1
+  ); // Light blue background for better visibility
+  transition: background-color 0.3s ease;
+  border-radius: 5px; // Corner radius for individual buttons
+  color: #007bff; // Blue text color for better visibility
+}
+
+.successButton {
+    color: green;
+    background-color: transparent;
+}

@@ -9,6 +9,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { MedicalCardComponent } from './components/medical-card/medical-card.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { AppointmentScheduler } from './components/appointment-scheduler/appointment-scheduler.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -35,6 +36,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AppointmentScheduler,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
       preventDuplicates: true,
