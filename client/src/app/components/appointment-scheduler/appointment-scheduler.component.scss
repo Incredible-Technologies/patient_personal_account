@@ -1,7 +1,7 @@
 @import "../../../styles.scss";
 
 .container {
-    background-color: white;
+    background-color: transparent;
     margin-top: 1rem;
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
@@ -12,7 +12,7 @@
 }
 
 .day-selected {
-    background-color: greenyellow;
+    background-color: transparent;
 }
 
 .greeting {
@@ -91,5 +91,5 @@ flex-direction: column;
 
 .successButton {
     color: green;
-    background-color: whitesmoke;
+    background-color: transparent;
 }
