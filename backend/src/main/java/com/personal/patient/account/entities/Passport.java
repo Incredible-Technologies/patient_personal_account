@@ -8,7 +8,9 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(
@@ -61,10 +63,11 @@ public class Passport {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToOne(
-            fetch = FetchType.LAZY, cascade = CascadeType.ALL,
-            mappedBy = "passport"
-    )
-    private PassportFile passportFile;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "passport")
+    private List<PassportFile> passportFiles = new ArrayList<>();
 
+    @Override
+    public String toString() {
+        return "Passport";
+    }
 }

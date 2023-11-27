@@ -36,4 +36,9 @@ public class ResultFile {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "result_card_id")
     private ResultCard resultCard;
+
+    @Override
+    public String toString() {
+        return "ResultFile";
+    }
 }

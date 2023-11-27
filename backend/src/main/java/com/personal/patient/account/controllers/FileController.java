@@ -1,9 +1,11 @@
 package com.personal.patient.account.controllers;
 
+import com.personal.patient.account.entities.PassportFile;
 import com.personal.patient.account.entities.ResultCard;
 import com.personal.patient.account.entities.ResultFile;
 import com.personal.patient.account.exceptions.ForbiddenException;
 import com.personal.patient.account.exceptions.NotFoundException;
+import com.personal.patient.account.service.PassportFileService;
 import com.personal.patient.account.service.ResultCardService;
 import com.personal.patient.account.service.ResultFileService;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +25,7 @@ public class FileController {
 
     private final ResultCardService resultCardService;
     private final ResultFileService resultFileService;
+    private final PassportFileService passportFileService;
 
     @ExceptionHandler(NotFoundException.class)
     protected ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
@@ -46,5 +49,18 @@ public class FileController {
                 .contentType(MediaType.valueOf(resultFile.getContentType()))
                 .contentLength(resultFile.getSize())
                 .body(new InputStreamResource(new ByteArrayInputStream(resultFile.getBytes())));
+    }
+
+    @GetMapping("/passport-file/{passportFileId}")
+    private ResponseEntity<?> getPassportFile(@PathVariable Long passportFileId, Principal principal){
+        PassportFile passportFile = passportFileService.findById(passportFileId);
+        if(!passportFile.getPassport().getUser().getEmail().equals(principal.getName())){
+            throw new ForbiddenException("Access denied");
+        }
+        return ResponseEntity.ok()
+                .header("fileName", passportFile.getOriginalFileName())
+                .contentType(MediaType.valueOf(passportFile.getContentType()))
+                .contentLength(passportFile.getSize())
+                .body(new InputStreamResource(new ByteArrayInputStream(passportFile.getBytes())));
     }
 }

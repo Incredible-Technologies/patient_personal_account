@@ -2,6 +2,7 @@ package com.personal.patient.account.service;
 
 
 import com.personal.patient.account.entities.Passport;
+import com.personal.patient.account.entities.User;
 import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.CreatingPassportRequest;
 import com.personal.patient.account.models.CreatingPassportResponse;
@@ -12,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -37,6 +39,13 @@ public class PassportService {
         passport.setIssuedBy(creatingPassportResponse.getIssuedBy());
     }
 
+    public Optional<Passport> findByUser(User user){
+        return passportRepository.findByUser(user);
+    }
+
+    public void save(Passport passport){
+        passportRepository.save(passport);
+    }
     public CreatingPassportRequest createPassport(CreatingPassportResponse creatingPassportResponse, Principal principal){
         Passport passport = new Passport();
         fillPassport(passport, creatingPassportResponse, principal);

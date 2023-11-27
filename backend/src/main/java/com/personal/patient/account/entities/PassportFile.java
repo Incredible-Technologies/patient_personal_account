@@ -33,7 +33,12 @@ public class PassportFile {
     @Lob
     private byte[] bytes;
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="passport_id")
     private Passport passport;
+
+    @Override
+    public String toString() {
+        return "PassportFile";
+    }
 }
