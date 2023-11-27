@@ -4,22 +4,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-  declarations: [
-  
-    FooterComponent,
-    NavbarComponent
-  ],
-  imports: [
-    CommonModule,
-    RouterModule
-  ],
-  exports: [
-    FooterComponent,
-    NavbarComponent
-  ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  declarations: [FooterComponent, NavbarComponent],
+  imports: [CommonModule, RouterModule],
+  exports: [FooterComponent, NavbarComponent],
 })
-export class SharedModule { }
+export class SharedModule {}
