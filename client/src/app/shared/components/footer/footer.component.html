@@ -10,7 +10,7 @@
         <ul class="list-unstyled nav-links mb-5">
           <li><a [routerLink]="['/profile']" *ngIf="authService.isLoggedIn()">Профиль</a></li>
           <li><a [routerLink]="['/electronic-medical-card']" *ngIf="authService.isLoggedIn()">Электронная карта</a></li>
-          <li><a [routerLink]="['/schedule-an-appointment']" *ngIf="authService.isLoggedIn()">Запись на приём</a></li>
+          <li><a [routerLink]="['/appointments']" *ngIf="authService.isLoggedIn()">Запись на прием</a></li>
           <li>
             <a [routerLink]="['/chat']" *ngIf="authService.isLoggedIn()" title="Чат с консультантом">
               <i class="fas fa-comments"></i>
