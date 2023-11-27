@@ -5,12 +5,14 @@ import { LoginRegisterComponent } from './components/login-register/login-regist
 import { MedicalCardComponent } from './components/medical-card/medical-card.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { AuthGuard } from './core/guards/auth.guard';
+import { AppointmentsComponent } from './components/appointments/appointments.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login-reg', pathMatch: 'full' },
   { path: 'login-reg', component: LoginRegisterComponent },
   { path: 'profile', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'electronic-medical-card', component: MedicalCardComponent, canActivate: [AuthGuard] },
+  { path: 'appointments', component: AppointmentsComponent, canActivate: [AuthGuard] },
   { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
   // ... other routes ...
 ];

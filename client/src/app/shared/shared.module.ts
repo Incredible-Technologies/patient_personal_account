@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FooterComponent } from './components/footer/footer.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RouterModule } from '@angular/router';
+import { AppointmentsComponent } from '../components/appointments/appointments.component';
 
 
 
@@ -11,7 +12,8 @@ import { RouterModule } from '@angular/router';
   declarations: [
   
     FooterComponent,
-    NavbarComponent
+    NavbarComponent,
+    AppointmentsComponent
   ],
   imports: [
     CommonModule,
