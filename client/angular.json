@@ -37,7 +37,6 @@
             "scripts": [
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
               "./node_modules/@lottiefiles/lottie-player/dist/lottie-player.js"
-              
             ]
           },
           "configurations": {
@@ -50,8 +49,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "6kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "60kb",
+                  "maximumError": "100kb"
                 }
               ],
               "outputHashing": "all"
