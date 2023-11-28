@@ -20,7 +20,7 @@ public class CreatingDoctorResponse {
 
     private String gender;
 
-    private Integer hospitalId;
+    private Long hospitalId;
 
     private List<CreatingSpecialization> specializations;
 

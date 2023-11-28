@@ -15,21 +15,23 @@ public class HospitalController {
 
     private final HospitalService hospitalService;
 
-    private final DoctorService doctorService;
-
     @PostMapping("")
     public ResponseEntity<?> addHospital(@RequestBody CreatingHospitalResponse creatingHospitalResponse){
         return ResponseEntity.ok(hospitalService.addHospital(creatingHospitalResponse));
     }
 
     @PostMapping("/doctor")
-    public ResponseEntity<?> addDoctorToHospital(@RequestBody CreatingDoctorResponse creatingDoctorResponse,
-                                                 @RequestParam("hospitalId") Long hospitalId){
-        return ResponseEntity.ok(doctorService.addDoctorToHospital(creatingDoctorResponse, hospitalId));
+    public ResponseEntity<?> addDoctorToHospital(@RequestBody CreatingDoctorResponse creatingDoctorResponse){
+        return ResponseEntity.ok(hospitalService.addDoctorToHospital(creatingDoctorResponse, creatingDoctorResponse.getHospitalId()));
     }
 
     @GetMapping("")
     public ResponseEntity<?> allHospital(){
         return ResponseEntity.ok(hospitalService.allHospitals());
+    }
+
+    @GetMapping("/doctors/{hospitalId}")
+    public ResponseEntity<?> allHospitalsDoctor(@PathVariable Long hospitalId){
+        return ResponseEntity.ok(hospitalService.allHospitalsDoctors(hospitalId));
     }
 }
