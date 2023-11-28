@@ -46,10 +46,16 @@ public class Doctor {
     private Hospital hospital;
 
     @OneToMany(
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "doctor"
     )
     private List<Specialization> specializations = new ArrayList<>();
+
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "doctor"
+    )
+    private List<Services> services = new ArrayList<>();
 
     @Override
     public String toString() {

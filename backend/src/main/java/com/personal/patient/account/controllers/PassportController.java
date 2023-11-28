@@ -42,8 +42,6 @@ public class PassportController {
 
     private final PassportFileService passportFileService;
 
-    private final UserService userService;
-
     @PostMapping("/passport")
     public ResponseEntity<?> creatingPassport(@RequestBody CreatingPassportResponse creatingPassportResponse, Principal principal){
         return ResponseEntity.ok(passportService.createPassport(creatingPassportResponse, principal));
