@@ -11,8 +11,13 @@
     border-radius: 10px;
 }
 
-.day-selected {
+.table-container {
     background-color: transparent;
+    border: 1px solid blueviolet;
+}
+
+.day-selected {
+    background-color: greenyellow;
 }
 
 .greeting {
