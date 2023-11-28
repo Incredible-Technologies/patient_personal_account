@@ -10,7 +10,9 @@ import com.personal.patient.account.utils.DateUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -35,5 +37,9 @@ public class HospitalService {
         hospital.setClosingTime(dateUtils.parseStringToTime(creatingHospitalResponse.getClosingTime()));
         hospital = hospitalRepository.save(hospital);
         return new CreatingHospitalRequest(hospital);
+    }
+
+    public List<CreatingHospitalRequest> allHospitals(){
+        return hospitalRepository.findAll().stream().map(CreatingHospitalRequest::new).collect(Collectors.toList());
     }
 }

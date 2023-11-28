@@ -27,4 +27,9 @@ public class HospitalController {
                                                  @RequestParam("hospitalId") Long hospitalId){
         return ResponseEntity.ok(doctorService.addDoctorToHospital(creatingDoctorResponse, hospitalId));
     }
+
+    @GetMapping("")
+    public ResponseEntity<?> allHospital(){
+        return ResponseEntity.ok(hospitalService.allHospitals());
+    }
 }
