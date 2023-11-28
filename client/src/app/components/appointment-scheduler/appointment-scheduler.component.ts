@@ -8,6 +8,8 @@ import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ProfileData } from 'src/app/core/models/profile-data.model';
+import { ProfileService } from 'src/app/core/services/profile.service';
 
 function getJsonFromUrl(url: string) {
   if (!url) url = location.search;
@@ -100,6 +102,7 @@ const DOCTORS = [
   styleUrls: ['./appointment-scheduler.component.scss'],
 })
 export class AppointmentScheduler {
+  profileData!: ProfileData; 
   specialities: string[] = [
     'АКУШЕР-ГИНЕКОЛОГ',
     'ВОП',
@@ -150,10 +153,11 @@ export class AppointmentScheduler {
     buttonToggle: false,
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private profileService: ProfileService,) {}
 
   ngOnInit() {
     const paramsParts = this.router.url.split(';');
+    this.loadProfile();
 
     const newDoctor: { doctorName: string } | undefined = getJsonFromUrl(
       paramsParts[1]
@@ -167,6 +171,27 @@ export class AppointmentScheduler {
       this.form.doctor = newDoctor?.doctorName;
       this.form.speciality = newSpeciality?.speciality;
     }
+  }
+
+  loadProfile(): void {
+    this.profileService.getProfile().subscribe({
+      next: (profile) => {
+        if (profile) {
+          //this.profileForm.patchValue(profile);
+          this.profileData = profile;
+        } else {
+          //this.toastr.info("Пожалуйста, заполните информацию в вашем профиле.");
+          // Redirect to profile completion page if needed
+        }
+      },
+      error: (error) => {
+        // Handle errors if needed
+      }
+    });
+  }
+
+  onReturnToAppointments() {
+    this.router.navigate(['/appointments']);
   }
 
   updateSpeciality(e: Event) {

@@ -3,18 +3,28 @@
 .container {
     background-color: transparent;
     margin-top: 1rem;
+    margin-bottom: 2rem;
     border-radius: 1rem;
     box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
     0 0 10px rgba(131, 176, 235, 0.1); // Enhanced shadow
     border: 1px solid $dark-button-bg;
     padding: 20px;
     border-radius: 10px;
+
+    
+
+    @media (max-width: 768px) { // Responsive design for mobile and tablet
+        margin: 0.5rem;
+        padding: 10px;
+    }
 }
 
-.table-container {
-    background-color: transparent;
-    border: 1px solid blueviolet;
+i{
+    color: #007bff;
+    margin-right: 10px;
 }
+
+
 
 .day-selected {
     background-color: greenyellow;
@@ -25,14 +35,67 @@
     justify-content: flex-start;
     padding: 1rem;
     font-size: large;
+    
 }
 
-.dateToVisitContainer {
+
+.appointment-actions {
+    display: flex;
+    justify-content: space-between; // Changed to space-between for better spacing
+    margin-top: 20px;
+    flex-wrap: wrap; // Allows buttons to wrap on smaller screens
+  
+    @media (min-width: 768px) { // For tablets and desktops
+      justify-content: space-between; // Buttons at the edges of the card
+    }
+  }
+  
+  .btn-appointment {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: $light-button-bg;
+    color: $light-button-text;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-grow: 1; // Allows buttons to grow and fill the space
+  
+    &:not(:last-child) {
+      margin-bottom: 10px; // Adds space between buttons on mobile
+    }
+  
+    &:hover {
+      background-color: darken($light-button-bg, 10%);
+    }
+  
+    @media (min-width: 768px) { // For tablets and desktops
+      flex-grow: 0; // Prevents buttons from growing
+      &:not(:last-child) {
+        margin-bottom: 0; // Removes the bottom margin on larger screens
+        margin-right: 10px; // Adds space between buttons
+      }
+    }
+  }
+  
+.dateToVisitContainer, .speciality, .doctor {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1rem;
     font-size: medium;
+
+    .date-label, div {
+        display: flex;
+        align-items: center;
+        i {
+            margin-right: 10px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .datepickerButton {
@@ -45,55 +108,71 @@ display: flex;
 flex-direction: column;
 }
 
-.speciality {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
-
-.doctor {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-}
 
 .selectedDoctor {
     color: goldenrod;
 }
 
 .doctorAvailabilityContainer {
-    display: grid;
-    grid-template-rows: 1fr 1fr 5fr;
+    display: flex;
+    flex-direction: column;
     row-gap: 0.5rem;
     padding: 1rem;
+
+    @media (max-width: 768px) {
+        // Adjustments for smaller screens
+    }
 }
 
 .ticketsLeft {
     color: rebeccapurple;
 }
 
+.table-container {
+    overflow-x: auto; // Allows table to scroll horizontally on smaller screens
+}
+
+.mat-table {
+    width: 100%;
+    min-width: 600px; // Ensures the table is still legible on smaller screens
+
+    th, td {
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .day-selected {
+        background-color: greenyellow; // Highlight selected day
+    }
+}
+
+
+.table-scroll-container {
+    overflow-x: auto; // Enable horizontal scrolling for the table
+    -webkit-overflow-scrolling: touch; // Smooth scrolling on touch devices
+    margin-bottom: 1rem;
+}
+
 .buttonContainer {
     padding: 1rem;
+    display: flex;
+    justify-content: center; // Center the button
 }
 
 .submitButton {
-  flex: 1;
-  padding: 10px;
-  cursor: pointer;
-  border: none;
-  background-color: rgba(
-    0,
-    123,
-    255,
-    0.1
-  ); // Light blue background for better visibility
-  transition: background-color 0.3s ease;
-  border-radius: 5px; // Corner radius for individual buttons
-  color: #007bff; // Blue text color for better visibility
-}
+    padding: 10px;
+    cursor: pointer;
+    background-color: rgba(0, 123, 255, 0.1);
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+    color: #007bff;
+    border: none;
+    width: 100%; // Make button full width for better mobile responsiveness
 
+    @media (max-width: 768px) {
+        width: auto; // Adjust width on smaller screens
+    }
+}
 .successButton {
     color: green;
     background-color: transparent;
