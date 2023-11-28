@@ -14,36 +14,74 @@
         </div>
     </div>
 
-    <!-- Patient Personal Information -->
-    <div class="personal-info med-card ">
-        <h2><i class="fas fa-user-circle"></i> Личная информация</h2>
-        <div class="info-content">
-            <div class="info-item">
-                <label><i class="fas fa-id-card"></i> Имя</label>
-                <span>Иван Иванов</span>
-            </div>
-            <div class="info-item">
-                <label><i class="fas fa-birthday-cake"></i> Дата рождения</label>
-                <span>01.01.1990</span>
-            </div>
-            <div class="info-item">
-                <label><i class="fas fa-venus-mars"></i> Пол</label>
-                <span>Мужской</span>
-            </div>
-            <div class="info-item">
-                <label><i class="fas fa-map-marker-alt"></i> Адрес</label>
-                <span>Москва, ул. Ленина, д. 10</span>
-            </div>
-            <div class="info-item">
-                <label><i class="fas fa-phone"></i> Телефон</label>
-                <span>+7 900 123 4567</span>
-            </div>
-            <div class="info-item">
-                <label><i class="fas fa-envelope"></i> Элект почта</label>
-                <span>ivanov@example.com</span>
-            </div>
+<!-- Patient Personal Information -->
+<div class="personal-info med-card">
+    <h2><i class="fas fa-user-circle fa-2x" style="color: #007BFF;"></i> Личная информация</h2>
+    <button class="edit-button" (click)="toggleEdit()"><i class="fas fa-edit"></i></button>
+
+    <div *ngIf="!isEditing; else editProfileForm" class="info-content">
+        <div class="info-item">
+            <label><i class="fas fa-id-card"></i> Имя</label>
+            <span>{{ profileData?.firstName }} {{ profileData?.middleName }} {{ profileData?.lastName }}</span>
+        </div>
+        <div class="info-item">
+            <label><i class="fas fa-birthday-cake"></i> Дата рождения</label>
+            <span>{{ profileData?.dateOfBirth }}</span>
+        </div>
+        <div class="info-item">
+            <label><i class="fas fa-venus-mars"></i> Пол</label>
+            <span>{{ profileData?.gender }}</span>
+        </div>
+        <div class="info-item">
+            <label><i class="fas fa-map-marker-alt"></i> Адрес</label>
+            <span>{{ profileData?.address }}</span>
+        </div>
+        <div class="info-item">
+            <label><i class="fas fa-phone"></i> Телефон</label>
+            <span>{{ profileData?.phoneNumber }}</span>
         </div>
     </div>
+
+    <ng-template #editProfileForm>
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-edit-form">
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" formControlName="firstName" placeholder="Имя">
+            </div>
+            <div class="form-group">
+                <label>Отчество</label>
+                <input type="text" formControlName="middleName" placeholder="Отчество">
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" formControlName="lastName" placeholder="Фамилия">
+            </div>
+            <div class="form-group">
+                <label>Дата рождения</label>
+                <input type="text" formControlName="dateOfBirth" placeholder="Дата рождения dd/MM/yyyy">
+            </div>
+            <div class="form-group">
+                <label>Пол</label>
+                <select formControlName="gender">
+                    <option value="Мужской">Мужской</option>
+                    <option value="Женский">Женский</option>
+                    <!-- Add more options if needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Адрес</label>
+                <input type="text" formControlName="address" placeholder="Адрес">
+            </div>
+            <div class="form-group">
+                <label>Телефон</label>
+                <input type="text" formControlName="phoneNumber" placeholder="Телефон">
+            </div>
+            <button type="submit" class="save-button">Сохранить</button>
+        </form>
+    </ng-template>
+</div>
+
+
 
 
 
@@ -126,11 +164,10 @@
     </div>
 
 
-    <!-- Diagnostics -->
+   
     <div class="diagnostics med-diagnostics-card">
         <h2>Диагностика</h2>
         <div class="diagnostics-content">
-            <!-- Sample Diagnostics Data -->
             <div class="diagnostics-item">
                 <i class="fas fa-stethoscope"></i>
                 <div class="diagnostics-details">
@@ -213,6 +250,39 @@
             </div>
         </div>
     </div>
+
+
+    <!-- <div class="med-diagnostics-card">
+        <h2>Результаты анализов</h2>
+        <div class="diagnostics-content">
+            <div *ngFor="let card of resultCards" class="diagnostics-item">
+                <button class="edit-button" (click)="toggleEditResultCard(card)">
+                    <i class="fas fa-edit"></i>
+                </button>
+                <i class="fas fa-file-medical-alt"></i>
+                <div class="diagnostics-details">
+                    <strong>{{ card.dateOfShouldReady | date: 'yyyy' }}</strong>
+                    <p>{{ card.name }}</p>
+                    <span>{{ card.description }}</span>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="isEditingResultCard" class="result-card-edit-form">
+            <form [formGroup]="resultCardForm" (ngSubmit)="saveResultCard()">
+                <div class="form-group">
+                    <label for="cardName">Name:</label>
+                    <input type="text" formControlName="cardName" class="form-control" id="cardName">
+                </div>
+                <div class="form-group">
+                    <label for="cardDescription">Description:</label>
+                    <textarea formControlName="cardDescription" class="form-control" id="cardDescription"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" (click)="isEditingResultCard = false">Cancel</button>
+            </form>
+        </div>
+    </div>
+     -->
 
 
     <!-- Treatments -->
