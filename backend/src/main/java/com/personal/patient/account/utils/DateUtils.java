@@ -4,6 +4,8 @@ import org.springframework.stereotype.Component;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 @Component
@@ -14,6 +16,18 @@ public class DateUtils {
         Date date = new Date();
         try {
             date = dateFormat.parse(stringDate);
+        } catch (ParseException e) {
+            // Ошибка парсинга даты
+            e.printStackTrace();
+        }
+        return date;
+    }
+
+    public Date parseStringToTime(String stringTime){
+        SimpleDateFormat formatter = new SimpleDateFormat("h:mm");
+        Date date = new Date();
+        try {
+            date = formatter.parse(stringTime);
         } catch (ParseException e) {
             // Ошибка парсинга даты
             e.printStackTrace();

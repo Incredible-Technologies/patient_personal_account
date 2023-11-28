@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -30,6 +32,14 @@ public class Hospital {
             mappedBy = "hospital"
     )
     private List<Doctor> doctors = new ArrayList<>();
+
+    @Column(name="opening_time")
+    @Temporal(TemporalType.TIME)
+    private Date openingTime;
+
+    @Column(name="closing_time")
+    @Temporal(TemporalType.TIME)
+    private Date closingTime;
 
     @Override
     public String toString() {
