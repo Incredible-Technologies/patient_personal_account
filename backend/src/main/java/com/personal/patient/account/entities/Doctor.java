@@ -1,22 +1,26 @@
 package com.personal.patient.account.entities;
 
 import com.personal.patient.account.models.enums.Gender;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
+@Table(name = "doctor")
 @Data
-public class Profile {
+@AllArgsConstructor
+@NoArgsConstructor
+public class Doctor {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long Id;
-
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name="user_id")
-    private User user;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="id")
+    private Long id;
 
     @Column(name="firstName")
     private String firstName;
@@ -32,17 +36,23 @@ public class Profile {
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
 
-    @Column(name="phoneNumber")
-    private String phoneNumber;
-
-    @Column(name="address")
-    private String address;
-
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @ManyToOne(
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY
+    )
+    @JoinColumn(name="hospital_id")
+    private Hospital hospital;
+
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            mappedBy = "doctor"
+    )
+    private List<Specialization> specializations = new ArrayList<>();
+
     @Override
     public String toString() {
-        return "Profile";
+        return "Doctor";
     }
 }
