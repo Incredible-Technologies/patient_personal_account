@@ -7,7 +7,17 @@ import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
 import { MatSelectModule } from '@angular/material/select';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
+function getJsonFromUrl(url: string) {
+  if (!url) url = location.search;
+  var result: any = {};
+  url.split('&').forEach(function (part) {
+    var item = part.split('=');
+    result[item[0]] = decodeURIComponent(item[1]);
+  });
+  return result;
+}
 interface DoctorTimetable {
   mnd: string;
   tsd: string;
@@ -57,7 +67,18 @@ const DOCTORS_TIMETABLE: DoctorTimetable[] = [
   },
 ];
 
-const DOCTORS = ['А. И. Трубецкой', 'Э. В. Васильев'];
+const DOCTORS = [
+  'Петров А.И.',
+  'Сидоров Т.К.',
+  'Андреев Ж.К.',
+  'Васильев А.В.',
+  'Терентьев А.Т.',
+  'Богомолов Е. Е.',
+  'Ольгина А. Г.',
+  'Ефремов Е. А.',
+  'Умнова А. А.',
+  'Карагонова В. П.',
+];
 
 @Component({
   selector: 'app-appointment-scheduler',
@@ -89,7 +110,7 @@ export class AppointmentScheduler {
     'ОСТЕОПОРОЗ',
     'ТЕРАПЕВТ',
     'УРОЛОГ',
-    'Бокс, симптомы ОРВИ/Грипп/COVID',
+    'Симптомы ОРВИ/Грипп/COVID',
     'КАРДИОЛОГ',
     'ОТОЛАРИНГОЛОГ',
     'ОФТАЛЬМОЛОГ',
@@ -120,7 +141,7 @@ export class AppointmentScheduler {
     speciality: 'empty',
     doctor: 'empty',
     date: 'empty',
-    ticketsLeft: -1,
+    ticketsLeft: Math.trunc(Math.random() * 100),
     isAllFieldsFilled: false,
     timetable: {
       isSelectedDay: 'empty',
@@ -129,9 +150,27 @@ export class AppointmentScheduler {
     buttonToggle: false,
   };
 
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    const paramsParts = this.router.url.split(';');
+
+    const newDoctor: { doctorName: string } | undefined = getJsonFromUrl(
+      paramsParts[1]
+    );
+
+    const newSpeciality: { speciality: string } | undefined = getJsonFromUrl(
+      paramsParts[2]
+    );
+
+    if (newDoctor?.doctorName && newSpeciality?.speciality) {
+      this.form.doctor = newDoctor?.doctorName;
+      this.form.speciality = newSpeciality?.speciality;
+    }
+  }
+
   updateSpeciality(e: Event) {
     this.form.speciality = (e.target as HTMLInputElement).value;
-    console.log(this.form.speciality);
     this.form.isAllFieldsFilled =
       !!this.form.date &&
       this.form.speciality !== 'empty' &&

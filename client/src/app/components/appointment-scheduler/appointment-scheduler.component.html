@@ -20,7 +20,7 @@
   <div class="selectors">
     <div class="speciality">
       <div>Выберите нужного специалиста</div>
-      <select #cricket (change)="updateSpeciality($event)">
+      <select #cricket (change)="updateSpeciality($event)" [(ngModel)]="form.speciality">
         <option value="empty">Не выбран</option>
         <option *ngFor="let speciality of specialities" [value]="speciality">
           {{speciality}}
@@ -29,7 +29,7 @@
     </div>
     <div class="doctor">
       <div>Выберите врача</div>
-      <select (change)="updateDoctor($event)">
+      <select (change)="updateDoctor($event)" [(ngModel)]="form.doctor">
         <option value="empty">Не выбран</option>
         <option *ngFor="let doctor of doctors" [value]="doctor">
           {{doctor}}
@@ -45,7 +45,7 @@
 
     <div class="ticketsLeft">Осталось свободных слотов: {{form.ticketsLeft}} </div>
 
-    <table mat-table [dataSource]="form.dataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="form.dataSource" class="mat-elevation-z8 table-container">
 
       <ng-container matColumnDef="mnd">
         <th mat-header-cell *matHeaderCellDef="let element"
@@ -117,7 +117,7 @@
     </table>
   </div>
 
-  <div class="buttonContainer">
+  <div class="buttonContainer" *ngIf="form.isAllFieldsFilled">
     <button class="submitButton" mat-raised-button color="primary" type="button" (click)="onSubmit()"
       [ngClass]="{'successButton' : form.buttonToggle}">
       <div *ngIf="!form.buttonToggle">Подтвердить
