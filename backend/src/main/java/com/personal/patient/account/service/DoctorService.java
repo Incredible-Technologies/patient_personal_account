@@ -6,17 +6,13 @@ import com.personal.patient.account.entities.Services;
 import com.personal.patient.account.entities.Specialization;
 import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.CreatingDoctorRequest;
-import com.personal.patient.account.models.CreatingDoctorResponse;
-import com.personal.patient.account.models.enums.Gender;
+import com.personal.patient.account.models.CreatingServices;
+import com.personal.patient.account.models.CreatingSpecialization;
 import com.personal.patient.account.repositories.DoctorRepository;
-import com.personal.patient.account.utils.DateUtils;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -29,5 +25,30 @@ public class DoctorService {
 
     public List<Doctor> findByHospital(Hospital hospital){
         return doctorRepository.findByHospital(hospital);
+    }
+
+    public CreatingDoctorRequest addServices(CreatingServices creatingServices, Long doctorId){
+        Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(
+                () -> new NotFoundException("No doctor with id: " + doctorId)
+        );
+        Services services = new Services();
+        services.setDoctor(doctor);
+        services.setName(creatingServices.getName());
+        services.setDuration(creatingServices.getDuration());
+        doctor.getServices().add(services);
+        doctor = doctorRepository.save(doctor);
+        return new CreatingDoctorRequest(doctor);
+    }
+
+    public CreatingDoctorRequest addSpecializations(CreatingSpecialization creatingSpecialization, Long doctorId){
+        Doctor doctor = doctorRepository.findById(doctorId).orElseThrow(
+                () -> new NotFoundException("No doctor with id: " + doctorId)
+        );
+        Specialization specialization = new Specialization();
+        specialization.setDoctor(doctor);
+        specialization.setName(creatingSpecialization.getName());
+        doctor.getSpecializations().add(specialization);
+        doctor = doctorRepository.save(doctor);
+        return new CreatingDoctorRequest(doctor);
     }
 }
