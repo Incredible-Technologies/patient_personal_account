@@ -8,4 +8,6 @@ import java.util.List;
 
 public interface DoctorRepository extends CrudRepository<Doctor, Long> {
     List<Doctor> findByHospital(Hospital hospital);
+
+    List<Doctor> findAll();
 }

@@ -56,4 +56,9 @@ public class HospitalController {
                                                  @RequestParam("doctorId") Long doctorId){
         return ResponseEntity.ok(doctorService.addSpecializations(creatingSpecialization, doctorId));
     }
+
+    @GetMapping("/doctors")
+    public ResponseEntity<?> allDoctors(){
+        return ResponseEntity.ok(doctorService.allDoctors());
+    }
 }

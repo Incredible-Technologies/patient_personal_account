@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -50,5 +51,9 @@ public class DoctorService {
         doctor.getSpecializations().add(specialization);
         doctor = doctorRepository.save(doctor);
         return new CreatingDoctorRequest(doctor);
+    }
+
+    public List<CreatingDoctorRequest> allDoctors(){
+        return doctorRepository.findAll().stream().map(CreatingDoctorRequest::new).collect(Collectors.toList());
     }
 }
