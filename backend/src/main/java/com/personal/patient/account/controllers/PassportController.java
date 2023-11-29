@@ -1,13 +1,11 @@
 package com.personal.patient.account.controllers;
 
-import com.personal.patient.account.entities.User;
 import com.personal.patient.account.exceptions.ForbiddenException;
 import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.CreatingPassportResponse;
 import com.personal.patient.account.models.DeletePassportFile;
 import com.personal.patient.account.service.PassportFileService;
 import com.personal.patient.account.service.PassportService;
-import com.personal.patient.account.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
@@ -42,7 +40,6 @@ public class PassportController {
 
     private final PassportFileService passportFileService;
 
-    private final UserService userService;
 
     @PostMapping("/passport")
     public ResponseEntity<?> creatingPassport(@RequestBody CreatingPassportResponse creatingPassportResponse, Principal principal){

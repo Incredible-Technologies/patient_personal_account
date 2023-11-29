@@ -1,10 +1,8 @@
 package com.personal.patient.account.models;
 
-import com.personal.patient.account.models.enums.PassportGender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.Date;
 
 @Data
 @AllArgsConstructor
