@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 @Entity
-@Table(name="result_file")
+@Table(name="passport_file")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResultFile {
+public class PassportFile {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="id")
@@ -33,12 +33,12 @@ public class ResultFile {
     @Lob
     private byte[] bytes;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "result_card_id")
-    private ResultCard resultCard;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="passport_id")
+    private Passport passport;
 
     @Override
     public String toString() {
-        return "ResultFile";
+        return "PassportFile";
     }
 }

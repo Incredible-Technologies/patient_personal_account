@@ -40,4 +40,9 @@ public class Profile {
 
     @Enumerated(EnumType.STRING)
     private Gender gender;
+
+    @Override
+    public String toString() {
+        return "Profile";
+    }
 }

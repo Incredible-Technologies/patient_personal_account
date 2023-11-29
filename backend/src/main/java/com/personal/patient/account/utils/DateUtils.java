@@ -20,4 +20,9 @@ public class DateUtils {
         }
         return date;
     }
+
+    public String parseDateToString(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
+    }
 }
