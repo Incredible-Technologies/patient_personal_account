@@ -25,4 +25,8 @@ public class CreatingDoctorResponse {
     private List<CreatingSpecialization> specializations;
 
     private List<CreatingServices> services;
+
+    private String startTime;
+
+    private String endTime;
 }

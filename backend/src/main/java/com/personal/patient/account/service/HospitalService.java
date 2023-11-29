@@ -81,6 +81,8 @@ public class HospitalService {
         doctor.setFirstName(creatingDoctorResponse.getFirstName());
         doctor.setMiddleName(creatingDoctorResponse.getMiddleName());
         doctor.setLastName(creatingDoctorResponse.getLastName());
+        doctor.setStartTime(dateUtils.parseStringToTime(creatingDoctorResponse.getStartTime()));
+        doctor.setEndTime(dateUtils.parseStringToTime(creatingDoctorResponse.getEndTime()));
         doctor.setDateOfBirth(dateUtils.parseStringToDate(creatingDoctorResponse.getDateOfBirth()));
         doctor.setGender(Gender.fromValue(creatingDoctorResponse.getGender()));
         Doctor doctor1 = doctorService.save(doctor);

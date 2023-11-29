@@ -57,6 +57,15 @@ public class Doctor {
     )
     private List<Services> services = new ArrayList<>();
 
+
+    @Column(name="start_time")
+    @Temporal(TemporalType.TIME)
+    private Date startTime;
+
+    @Column(name="end_time")
+    @Temporal(TemporalType.TIME)
+    private Date endTime;
+
     @Override
     public String toString() {
         return "Doctor";
