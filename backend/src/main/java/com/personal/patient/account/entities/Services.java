@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "services")
@@ -27,4 +29,10 @@ public class Services {
 
     @Column(name = "duration_in_minutes")
     private Integer duration;
+
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            mappedBy = "services"
+    )
+    private List<Appointment> appointments = new ArrayList<>();
 }

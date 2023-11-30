@@ -50,8 +50,15 @@ public class User {
     )
     private Passport passport;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "user")
     private List<ResultCard> results = new ArrayList<>();
+
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "user"
+    )
+    private List<Appointment> appointments = new ArrayList<>();
 
     @Override
     public String toString() {

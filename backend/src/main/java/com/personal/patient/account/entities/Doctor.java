@@ -66,6 +66,12 @@ public class Doctor {
     @Temporal(TemporalType.TIME)
     private Date endTime;
 
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "doctor"
+    )
+    private List<Appointment> appointments = new ArrayList<>();
+
     @Override
     public String toString() {
         return "Doctor";

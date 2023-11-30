@@ -27,7 +27,7 @@ public class Hospital {
     private String address;
 
     @OneToMany(
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "hospital"
     )
     private List<Doctor> doctors = new ArrayList<>();
@@ -39,6 +39,12 @@ public class Hospital {
     @Column(name="closing_time")
     @Temporal(TemporalType.TIME)
     private Date closingTime;
+
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "hospital"
+    )
+    private List<Appointment> appointments = new ArrayList<>();
 
     @Override
     public String toString() {
