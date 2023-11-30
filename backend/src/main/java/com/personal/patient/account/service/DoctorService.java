@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -55,5 +56,9 @@ public class DoctorService {
 
     public List<CreatingDoctorRequest> allDoctors(){
         return doctorRepository.findAll().stream().map(CreatingDoctorRequest::new).collect(Collectors.toList());
+    }
+
+    public Optional<Doctor> findById(Long id){
+        return doctorRepository.findById(id);
     }
 }

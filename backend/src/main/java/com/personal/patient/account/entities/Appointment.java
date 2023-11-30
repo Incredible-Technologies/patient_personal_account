@@ -42,11 +42,15 @@ public class Appointment {
     @JoinColumn(name="services_id")
     private Services services;
 
+    @Column(name="date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
+
     @Column(name="start_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date startDate;
+    @Temporal(TemporalType.TIME)
+    private Date startTime;
 
     @Column(name="end_time")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date endDate;
+    @Temporal(TemporalType.TIME)
+    private Date endTime;
 }

@@ -6,6 +6,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.Date;
 
 @Component
@@ -33,5 +34,12 @@ public class DateUtils {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public Date addMinutes(Date date, Integer minutes){
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.MINUTE, minutes);
+        return calendar.getTime();
     }
 }
