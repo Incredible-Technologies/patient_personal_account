@@ -86,6 +86,7 @@
     align-items: center;
   }
 
+
   .edit-button {
     background: none;
     border: none;
@@ -102,6 +103,14 @@
     align-items: center;
     gap: 5px;
   }
+}
+
+.mri-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  
 }
 
 // Add styles for your form here
