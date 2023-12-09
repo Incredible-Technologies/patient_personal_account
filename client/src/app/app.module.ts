@@ -18,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -37,6 +38,7 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     HttpClientModule,
     BrowserAnimationsModule,
     AppointmentScheduler,
+    MatTabsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
       preventDuplicates: true,

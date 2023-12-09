@@ -8,6 +8,7 @@ export interface ProfileData {
     dateOfBirth: string; // Ensure this is in 'dd/MM/yyyy' format
     phoneNumber: string;
     gender: Gender;
+    email: string;
   }
   
   export enum Gender {

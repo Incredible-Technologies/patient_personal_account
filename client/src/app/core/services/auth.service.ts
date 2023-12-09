@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { jwtDecode } from "jwt-decode";
+
 
 @Injectable({
     providedIn: 'root',
@@ -36,6 +38,16 @@ export class AuthService {
 
      logout(): void {
         localStorage.removeItem('authToken');
+    }
+
+    getCurrentUserEmail(): string | null {
+        const token = this.getAuthToken();
+        if (token) {
+            const decodedToken: any = jwtDecode(token);
+            //console.log("Decoded Token:", decodedToken);
+            return decodedToken.sub; // Assuming 'email' is a field in the token payload
+        }
+        return null;
     }
 }
 

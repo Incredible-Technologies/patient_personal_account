@@ -216,84 +216,109 @@
   }
 }
 
+
 .med-diagnostics-card {
   padding: 20px;
   border-radius: 10px;
   margin-bottom: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: transparent;
   border: 1px solid $dark-button-bg;
   position: relative;
-  z-index: 1; // to ensure it pops up above other content
-}
+  //background-color: #fff;
 
-.diagnostics {
   h2 {
-    text-align: left; // Aligning the heading to the left/start
+    text-align: left;
+    margin-bottom: 10px;
   }
 
-  .diagnostics-content {
-    max-height: 300px;
-    overflow-y: auto;
-    padding-left: 40px; // Added padding to accommodate the icons
+  .add-result-card-button {
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 0.9em;
+    display: inline-block;
+    margin-bottom: 20px;
+
+    &:hover {
+      background: darken(#007bff, 10%);
+    }
+
+    i {
+      margin-right: 5px;
+    }
+  }
+
+  
+  // Style for Tab Group
+  mat-tab-group {
+    max-height: 500px; // Limiting the height to make it scrollable
+    overflow-y: auto; // Enable vertical scrolling
+
+    .all-cards-tab, .done-cards-tab, .not-done-cards-tab {
+      // Custom style for tab labels
+      font-weight: bold;
+      color: $dark-button-bg; // Replace with your desired color
+    }
+    
 
     .diagnostics-item {
       display: flex;
       align-items: center;
       margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
 
-      i {
-        color: $dark-button-bg;
-        margin-right: 10px;
-        background-color: #fff;
-        border-radius: 50%;
-        padding: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        position: relative;
-        z-index: 2;
+      .fa-file-medical-alt {
+        color: #007bff;
+        margin-right: 15px;
+        font-size: 1.5rem;
       }
 
       .diagnostics-details {
-        display: flex;
-        flex-direction: column;
+        flex-grow: 1;
 
         strong {
           font-weight: bold;
         }
 
-        p {
-          margin-top: 5px;
+        p, span {
+          margin: 0;
+          font-size: 0.9em;
         }
 
         span {
-          font-size: 0.9em;
           color: gray;
+        }
+      }
+      .download-button {
+        // Style the download button
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 5px 10px;
+        margin-left: 10px; // Space from other content
+        margin-right: 10px; 
+        cursor: pointer;
+        font-size: 0.9em;
+  
+        &:hover {
+          background: darken(#007bff, 10%);
+        }
+  
+        i {
         }
       }
     }
   }
-}
 
-.med-diagnostics-card {
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: transparent;
-  border: 1px solid $dark-button-bg;
-  position: relative;
-  z-index: 1; // to ensure it pops up above other content
-
-  .result-card-edit-form {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+  .result-card-create-form, .result-card-edit-form {
+    border: 1px solid $dark-button-bg;
     border-radius: 5px;
+    padding: 20px;
+    //background-color: #f8f9fa;
 
-    // Styles for the form and its elements
     .form-group {
       margin-bottom: 15px;
 
@@ -302,17 +327,15 @@
         margin-bottom: 5px;
       }
 
-      input[type="text"],
-      input[type="date"],
-      textarea {
+      input[type="text"], input[type="date"], input[type="email"], textarea {
         width: 100%;
         padding: 8px;
-        border: 1px solid #ccc;
+        border: 1px solid $dark-button-bg;
         border-radius: 4px;
       }
 
       textarea {
-        resize: vertical; // Allows vertical resizing of textarea
+        resize: vertical;
       }
     }
 
@@ -321,130 +344,20 @@
     }
   }
 
-  .diagnostics-content {
-    h2 {
-      text-align: left; // Aligning the heading to the left/start
-    }
-  
-    .diagnostics-content {
-      max-height: 300px;
-      overflow-y: auto;
-      padding-left: 40px; // Added padding to accommodate the icons
-  
-      .diagnostics-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 10px;
-        position: relative;
-        z-index: 1;
-  
-        i {
-          color: $dark-button-bg;
-          margin-right: 10px;
-          background-color: #fff;
-          border-radius: 50%;
-          padding: 5px;
-          box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-          position: relative;
-          z-index: 2;
-        }
-  
-        .diagnostics-details {
-          display: flex;
-          flex-direction: column;
-  
-          strong {
-            font-weight: bold;
-          }
-  
-          p {
-            margin-top: 5px;
-          }
-  
-          span {
-            font-size: 0.9em;
-            color: gray;
-          }
-        }
-      }
+  // Responsive adjustments
+  @media (max-width: 768px) {
+    .add-result-card-button {
+      width: 100%;
+      margin-bottom: 15px;
     }
 
-    .edit-button {
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      background: transparent;
-      border: none;
-      cursor: pointer;
-
-      i {
-        color: #007bff; // Blue color for the edit icon
-      }
-
-      &:hover {
-        i {
-          color: darken(#007bff, 10%); // Slightly darker color on hover
-        }
-      }
+    .result-card-create-form, .result-card-edit-form {
+      padding: 10px;
     }
   }
 }
 
 
-
-.med-treatments-card {
-  padding: 20px;
-  border-radius: 10px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: transparent;
-  border: 1px solid $dark-button-bg;
-  position: relative;
-  z-index: 1;
-}
-
-.treatments {
-  h2 {
-    text-align: left;
-  }
-
-  .treatments-content {
-    max-height: 300px;
-    overflow-y: auto;
-    padding-left: 30px;
-
-    .treatments-item {
-      display: flex;
-      align-items: center;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-
-      i {
-        color: $dark-button-bg;
-        margin-right: 10px;
-        background-color: #fff;
-        border-radius: 50%;
-        padding: 5px;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        position: relative;
-        z-index: 2;
-      }
-
-      .treatments-details {
-        strong {
-          display: block;
-          font-weight: bold;
-          margin-bottom: 5px;
-        }
-
-        p {
-          margin-bottom: 5px;
-        }
-      }
-    }
-  }
-}
 
 .attachments {
   padding: 20px;
