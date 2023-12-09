@@ -14,76 +14,80 @@
         </div>
     </div>
 
-<!-- Patient Personal Information -->
-<div class="personal-info med-card">
-    <h2><i class="fas fa-user-circle fa-2x" style="color: #007BFF;"></i> Личная информация</h2>
-    <button class="edit-button" (click)="toggleEdit()"><i class="fas fa-edit"></i></button>
+    <!-- Patient Personal Information -->
+    <div class="personal-info med-card">
+        <h2><i class="fas fa-user-circle fa-2x" style="color: #007BFF;"></i> Личная информация</h2>
+        <button class="edit-button" (click)="toggleEdit()"><i class="fas fa-edit"></i></button>
 
-    <div *ngIf="!isEditing; else editProfileForm" class="info-content">
-        <div class="info-item">
-            <label><i class="fas fa-id-card"></i> Имя</label>
-            <span>{{ profileData?.firstName }} {{ profileData?.middleName }} {{ profileData?.lastName }}</span>
+        <div *ngIf="!isEditing; else editProfileForm" class="info-content">
+            <div class="info-item">
+                <label><i class="fas fa-id-card"></i> Имя</label>
+                <span>{{ profileData?.firstName }} {{ profileData?.middleName }} {{ profileData?.lastName }}</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fas fa-birthday-cake"></i> Дата рождения</label>
+                <span>{{ profileData?.dateOfBirth }}</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fas fa-venus-mars"></i> Пол</label>
+                <span>{{ profileData?.gender }}</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fas fa-map-marker-alt"></i> Адрес</label>
+                <span>{{ profileData?.address }}</span>
+            </div>
+            <div class="info-item">
+                <label><i class="fas fa-phone"></i> Телефон</label>
+                <span>{{ profileData?.phoneNumber }}</span>
+            </div>
+            <div class="info-item">
+                <button (click)="onAddMRI()" class="save-button">Загрузить снимок МРТ</button>
+            </div>
         </div>
-        <div class="info-item">
-            <label><i class="fas fa-birthday-cake"></i> Дата рождения</label>
-            <span>{{ profileData?.dateOfBirth }}</span>
-        </div>
-        <div class="info-item">
-            <label><i class="fas fa-venus-mars"></i> Пол</label>
-            <span>{{ profileData?.gender }}</span>
-        </div>
-        <div class="info-item">
-            <label><i class="fas fa-map-marker-alt"></i> Адрес</label>
-            <span>{{ profileData?.address }}</span>
-        </div>
-        <div class="info-item">
-            <label><i class="fas fa-phone"></i> Телефон</label>
-            <span>{{ profileData?.phoneNumber }}</span>
-        </div>
+
+        <ng-template #editProfileForm>
+            <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-edit-form">
+                <div class="form-group">
+                    <label>Имя</label>
+                    <input type="text" formControlName="firstName" placeholder="Имя">
+                </div>
+                <div class="form-group">
+                    <label>Отчество</label>
+                    <input type="text" formControlName="middleName" placeholder="Отчество">
+                </div>
+                <div class="form-group">
+                    <label>Фамилия</label>
+                    <input type="text" formControlName="lastName" placeholder="Фамилия">
+                </div>
+                <div class="form-group">
+                    <label>Дата рождения</label>
+                    <input type="text" formControlName="dateOfBirth" placeholder="Дата рождения dd/MM/yyyy">
+                </div>
+                <div class="form-group">
+                    <label>Пол</label>
+                    <select formControlName="gender">
+                        <option value="Мужской">Мужской</option>
+                        <option value="Женский">Женский</option>
+                        <!-- Add more options if needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Адрес</label>
+                    <input type="text" formControlName="address" placeholder="Адрес">
+                </div>
+                <div class="form-group">
+                    <label>Телефон</label>
+                    <input type="text" formControlName="phoneNumber" placeholder="Телефон">
+                </div>
+                <button type="submit" class="save-button">Сохранить</button>
+            </form>
+        </ng-template>
     </div>
 
-    <ng-template #editProfileForm>
-        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-edit-form">
-            <div class="form-group">
-                <label>Имя</label>
-                <input type="text" formControlName="firstName" placeholder="Имя">
-            </div>
-            <div class="form-group">
-                <label>Отчество</label>
-                <input type="text" formControlName="middleName" placeholder="Отчество">
-            </div>
-            <div class="form-group">
-                <label>Фамилия</label>
-                <input type="text" formControlName="lastName" placeholder="Фамилия">
-            </div>
-            <div class="form-group">
-                <label>Дата рождения</label>
-                <input type="text" formControlName="dateOfBirth" placeholder="Дата рождения dd/MM/yyyy">
-            </div>
-            <div class="form-group">
-                <label>Пол</label>
-                <select formControlName="gender">
-                    <option value="Мужской">Мужской</option>
-                    <option value="Женский">Женский</option>
-                    <!-- Add more options if needed -->
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Адрес</label>
-                <input type="text" formControlName="address" placeholder="Адрес">
-            </div>
-            <div class="form-group">
-                <label>Телефон</label>
-                <input type="text" formControlName="phoneNumber" placeholder="Телефон">
-            </div>
-            <button type="submit" class="save-button">Сохранить</button>
-        </form>
-    </ng-template>
-</div>
 
-
-
-
+    <div id="mriImageContainer" class="mri-image-container">
+        <img [src]="mriImageUrl">
+    </div>
 
     <!-- Medical History -->
     <div class="medical-history med-history-card">
@@ -164,7 +168,7 @@
     </div>
 
 
-   
+
     <div class="diagnostics med-diagnostics-card">
         <h2>Диагностика</h2>
         <div class="diagnostics-content">
