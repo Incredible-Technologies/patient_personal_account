@@ -32,6 +32,7 @@ public class ResultCardService {
         resultCard.setDateOfMake(new Date());
 
         Date dateOfShouldReady = dateUtils.parseStringToDate(resultCardResponse.getDateOfShouldReady());
+        resultCard.setName(resultCardResponse.getName());
         resultCard.setDateOfShouldReady(dateOfShouldReady);
         resultCard.setDescription(resultCardResponse.getDescription());
         resultCard.setHospitalAddress(resultCardResponse.getHospitalAddress());
