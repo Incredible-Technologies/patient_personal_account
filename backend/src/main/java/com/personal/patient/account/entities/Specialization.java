@@ -25,4 +25,9 @@ public class Specialization {
     )
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
+
+    @Override
+    public String toString() {
+        return "Specialization";
+    }
 }

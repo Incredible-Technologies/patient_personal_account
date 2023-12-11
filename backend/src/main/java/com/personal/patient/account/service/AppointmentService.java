@@ -10,8 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -64,5 +62,15 @@ public class AppointmentService {
 
         appointment = appointmentRepository.save(appointment);
         return new CreatingAppointmentRequest(appointment);
+    }
+
+    public List<Appointment> getAllUserAppointment(Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+        List<Appointment> list =appointmentRepository.findByUser(user);
+        return list;
+    }
+
+    public List<Appointment> getAllDoctorsAppointmentsByDate(Doctor doctor, Date date){
+        return appointmentRepository.findByDoctorAndDate(doctor,date);
     }
 }

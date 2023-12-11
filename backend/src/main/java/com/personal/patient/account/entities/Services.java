@@ -35,4 +35,9 @@ public class Services {
             mappedBy = "services"
     )
     private List<Appointment> appointments = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return "Services";
+    }
 }

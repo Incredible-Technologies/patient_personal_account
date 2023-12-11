@@ -1,5 +1,7 @@
 package com.personal.patient.account.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personal.patient.account.models.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,6 +41,7 @@ public class Doctor {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
+    @JsonIgnore
     @ManyToOne(
             cascade = CascadeType.ALL, fetch = FetchType.LAZY
     )

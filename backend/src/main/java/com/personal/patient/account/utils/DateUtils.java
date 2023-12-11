@@ -1,6 +1,11 @@
 package com.personal.patient.account.utils;
 
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,6 +15,8 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Component
+@Data
+@NoArgsConstructor
 public class DateUtils {
     public Date parseStringToDate(String stringDate){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");

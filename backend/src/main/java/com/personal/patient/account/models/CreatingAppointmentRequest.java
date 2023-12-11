@@ -1,9 +1,12 @@
 package com.personal.patient.account.models;
 
 import com.personal.patient.account.entities.Appointment;
+import com.personal.patient.account.utils.DateUtils;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
 import java.time.Instant;
@@ -16,6 +19,7 @@ import java.util.Date;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Service
 public class CreatingAppointmentRequest {
     private Long id;
 
@@ -31,10 +35,11 @@ public class CreatingAppointmentRequest {
 
     private String endTime;
 
+
     public CreatingAppointmentRequest(Appointment appointment){
         this.id = appointment.getId();
 
-        this.doctorId = appointment.getDoctor().getId();
+       this.doctorId = appointment.getDoctor().getId();
 
         this.hospitalId = appointment.getHospital().getId();
 

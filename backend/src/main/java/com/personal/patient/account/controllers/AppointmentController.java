@@ -4,10 +4,7 @@ import com.personal.patient.account.models.CreatingAppointmentResponse;
 import com.personal.patient.account.service.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -21,5 +18,10 @@ public class AppointmentController {
     public ResponseEntity<?> addAppointment(@RequestBody CreatingAppointmentResponse creatingAppointmentResponse
             , Principal principal){
         return ResponseEntity.ok(appointmentService.addAppointment(creatingAppointmentResponse, principal));
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<?> allAppointment(Principal principal){
+        return ResponseEntity.ok(appointmentService.getAllUserAppointment(principal));
     }
 }

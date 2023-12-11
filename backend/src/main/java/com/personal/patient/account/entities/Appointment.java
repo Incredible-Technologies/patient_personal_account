@@ -1,5 +1,6 @@
 package com.personal.patient.account.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -18,6 +19,7 @@ public class Appointment {
     @Column(name="id")
     private Long id;
 
+    @JsonIgnore
     @ManyToOne(
             cascade = CascadeType.ALL, fetch = FetchType.LAZY
     )
@@ -53,4 +55,9 @@ public class Appointment {
     @Column(name="end_time")
     @Temporal(TemporalType.TIME)
     private Date endTime;
+
+    @Override
+    public String toString() {
+        return "Appointment";
+    }
 }
