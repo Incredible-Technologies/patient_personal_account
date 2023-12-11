@@ -2,6 +2,7 @@ package com.personal.patient.account.controllers;
 
 import com.personal.patient.account.entities.User;
 import com.personal.patient.account.entities.Profile;
+import com.personal.patient.account.exceptions.AlreadyExistException;
 import com.personal.patient.account.exceptions.NotFoundException;
 import com.personal.patient.account.models.ProfileRepresentation;
 import com.personal.patient.account.models.FullProfileRepresentation;
@@ -25,12 +26,20 @@ public class ProfileController {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
     }
 
+    @ExceptionHandler(AlreadyExistException.class)
+    protected ResponseEntity<Object> handleAlreadyExistException(AlreadyExistException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
 
     @PostMapping("")
     public ResponseEntity<?> saveOrChangeProfile(@RequestBody ProfileRepresentation profileRequest, Principal principal){
-        User user = userService.getUserByPrincipal(principal);
-        profileService.createOrChangeProfile(profileRequest, user);
-        return ResponseEntity.ok(new FullProfileRepresentation(profileRequest, user.getId()));
+        return ResponseEntity.ok(profileService.createProfile(profileRequest, principal));
+    }
+
+    @PutMapping("")
+    public ResponseEntity<?> changeProfile(@RequestBody ProfileRepresentation profileRequest, Principal principal){
+        return ResponseEntity.ok(profileService.changeProfile(profileRequest, principal));
     }
 
     @GetMapping("")

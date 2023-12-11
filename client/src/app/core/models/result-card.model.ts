@@ -10,3 +10,12 @@ export interface ResultCard {
     resultFileId?: number;
     userId: number;
   }
+
+  // Add this interface in your models
+export interface CreateResultCardRequest {
+  name: string;
+  description: string;
+  dateOfShouldReady: string;
+  hospitalAddress: string;
+  userEmail: string;
+}
