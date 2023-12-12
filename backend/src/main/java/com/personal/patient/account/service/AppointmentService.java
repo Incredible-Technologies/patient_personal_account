@@ -87,10 +87,10 @@ public class AppointmentService {
         return new CreatingAppointmentRequest(appointment);
     }
 
-    public List<Appointment> getAllUserAppointment(Principal principal){
+    public List<CreatingAppointmentRequest> getAllUserAppointment(Principal principal){
         User user = userService.getUserByPrincipal(principal);
-        List<Appointment> list =appointmentRepository.findByUser(user);
-        return list;
+        List<Appointment> list = appointmentRepository.findByUser(user);
+        return list.stream().map(CreatingAppointmentRequest::new).collect(Collectors.toList());
     }
 
     public List<Appointment> getAllDoctorsAppointmentsByDate(Doctor doctor, Date date){
