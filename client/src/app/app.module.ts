@@ -9,6 +9,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { LoginRegisterComponent } from './components/login-register/login-register.component';
 import { MedicalCardComponent } from './components/medical-card/medical-card.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { AppointmentScheduler } from './components/appointment-scheduler/appointment-scheduler.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -17,6 +18,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { MatTabsModule } from '@angular/material/tabs';
 
 @NgModule({
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
@@ -35,6 +37,8 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
     SharedModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    AppointmentScheduler,
+    MatTabsModule,
     ToastrModule.forRoot({
       positionClass: 'toast-top-center',
       preventDuplicates: true,

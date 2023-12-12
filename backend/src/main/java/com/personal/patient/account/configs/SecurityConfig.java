@@ -57,7 +57,6 @@ public class SecurityConfig {
                 .antMatchers("/documents/passport/passport-file").authenticated()
                 .antMatchers("/documents/passport/passport-file/**").authenticated()
                 .antMatchers("/profile").authenticated()
-                .antMatchers("/profile").authenticated()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .anyRequest().permitAll()
                 .and()

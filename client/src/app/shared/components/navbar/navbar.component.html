@@ -22,7 +22,7 @@
             <a class="nav-link" [routerLink]="['/electronic-medical-card']">Электронная карта</a>
           </li>
           <li class="nav-item" *ngIf="authService.isLoggedIn()">
-            <a class="nav-link" [routerLink]="['/appointment']">Запись на прием</a>
+            <a class="nav-link" [routerLink]="['/appointments']">Запись на прием</a>
           </li>
           
           
@@ -31,11 +31,11 @@
                 <i class="fas fa-comments"></i>
             </a>
         </li>
-        <li class="nav-item" *ngIf="authService.isLoggedIn()">
+        <!-- <li class="nav-item" *ngIf="authService.isLoggedIn()">
             <a class="nav-link" [routerLink]="['/notifications']" title="Уведомления">
                 <i class="fas fa-bell"></i>
             </a>
-        </li>
+        </li> -->
         <li *ngIf="authService.isLoggedIn(); else showLogin" class="nav-item">
           <button (click)="onLogout()"><i class="fas fa-sign-out-alt"></i> Выход</button>
         </li>

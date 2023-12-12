@@ -23,26 +23,30 @@ public class AuthService {
     private final JwtTokenUtils jwtTokenUtils;
     private final AuthenticationManager authenticationManager;
 
-    public ResponseEntity<?> createAuthToken(JwtRequest authRequest){
-        try{
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
+    public ResponseEntity<?> createAuthToken(JwtRequest authRequest) {
+        try {
+            authenticationManager.authenticate(
+                    new UsernamePasswordAuthenticationToken(authRequest.getEmail(), authRequest.getPassword()));
+        } catch (BadCredentialsException e) {
+            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Неправильный логин или пароль"),
+                    HttpStatus.UNAUTHORIZED);
         }
-        catch (BadCredentialsException e){
-            return new ResponseEntity<>(new AppError(HttpStatus.UNAUTHORIZED.value(), "Неправильный логин или пароль"), HttpStatus.UNAUTHORIZED);}
         UserDetails userDetails = userService.loadUserByUsername(authRequest.getEmail());
         String token = jwtTokenUtils.generateToken(userDetails);
         return ResponseEntity.ok(new JwtResponse(token));
     }
 
-    public ResponseEntity<?> createNewUser(RegistrationUser registrationUser){
-        if(!registrationUser.getPassword().equals(registrationUser.getConfirmPassword())){
-            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Пароли не совпадают"), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<?> createNewUser(RegistrationUser registrationUser) {
+        if (!registrationUser.getPassword().equals(registrationUser.getConfirmPassword())) {
+            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Пароли не совпадают"),
+                    HttpStatus.BAD_REQUEST);
         }
-        if(userService.findByUsername(registrationUser.getEmail()).isPresent()){
-            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "Пользовательс указанными именем уже существует"), HttpStatus.BAD_REQUEST);
+        if (userService.findByUsername(registrationUser.getEmail()).isPresent()) {
+            return new ResponseEntity<>(
+                    new AppError(HttpStatus.BAD_REQUEST.value(), "Пользователь указанными именем уже существует"),
+                    HttpStatus.BAD_REQUEST);
         }
         User user = userService.createNewUser(registrationUser);
         return ResponseEntity.ok(new UserResponse(user.getId(), user.getEmail()));
     }
 }
-

@@ -15,36 +15,180 @@
     </div>
 
     <!-- Patient Personal Information -->
-    <div class="personal-info med-card ">
-        <h2><i class="fas fa-user-circle"></i> Личная информация</h2>
-        <div class="info-content">
+    <div class="personal-info med-card">
+        <h2><i class="fas fa-user-circle fa-2x" style="color: #007BFF;"></i> Личная информация</h2>
+        <button class="edit-button" (click)="toggleEdit()"><i class="fas fa-edit"></i></button>
+
+        <div *ngIf="!isEditing; else editProfileForm" class="info-content">
             <div class="info-item">
                 <label><i class="fas fa-id-card"></i> Имя</label>
-                <span>Иван Иванов</span>
+                <span>{{ profileData?.firstName }} {{ profileData?.middleName }} {{ profileData?.lastName }}</span>
             </div>
             <div class="info-item">
                 <label><i class="fas fa-birthday-cake"></i> Дата рождения</label>
-                <span>01.01.1990</span>
+                <span>{{ profileData?.dateOfBirth }}</span>
             </div>
             <div class="info-item">
                 <label><i class="fas fa-venus-mars"></i> Пол</label>
-                <span>Мужской</span>
+                <span>{{ profileData?.gender }}</span>
             </div>
             <div class="info-item">
                 <label><i class="fas fa-map-marker-alt"></i> Адрес</label>
-                <span>Москва, ул. Ленина, д. 10</span>
+                <span>{{ profileData?.address }}</span>
             </div>
             <div class="info-item">
                 <label><i class="fas fa-phone"></i> Телефон</label>
-                <span>+7 900 123 4567</span>
+                <span>{{ profileData?.phoneNumber }}</span>
             </div>
+        <div class="info-item">
+            <label><i class="fas fa-envelope"></i> Эл почта</label>
+            <span>{{ profileData?.email }}</span>
+          </div>
+          
             <div class="info-item">
-                <label><i class="fas fa-envelope"></i> Элект почта</label>
-                <span>ivanov@example.com</span>
+                <button (click)="onAddMRI()" class="save-button">Загрузить снимок МРТ</button>
             </div>
         </div>
-    </div>
 
+    <ng-template #editProfileForm>
+        <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" class="profile-edit-form">
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" formControlName="firstName" placeholder="Имя">
+            </div>
+            <div class="form-group">
+                <label>Отчество</label>
+                <input type="text" formControlName="middleName" placeholder="Отчество">
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" formControlName="lastName" placeholder="Фамилия">
+            </div>
+            <div class="form-group">
+                <label>Дата рождения</label>
+                <input type="date" formControlName="dateOfBirth" placeholder="Дата рождения dd/MM/yyyy">
+            </div>
+            <div class="form-group">
+                <label>Пол</label>
+                <select formControlName="gender">
+                    <option value="Мужской">Мужской</option>
+                    <option value="Женский">Женский</option>
+                    <!-- Add more options if needed -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Адрес</label>
+                <input type="text" formControlName="address" placeholder="Адрес">
+            </div>
+            <div class="form-group">
+                <label>Телефон</label>
+                <input type="text" formControlName="phoneNumber" placeholder="Телефон">
+            </div>
+            <button type="submit" class="save-button">Сохранить</button>
+        </form>
+    </ng-template>
+</div>
+
+<div id="mriImageContainer" class="mri-image-container">
+    <h2>снимок МРТ</h2>
+    <img [src]="mriImageUrl">
+</div>
+
+<div class="med-diagnostics-card">
+    <h2>Результаты анализов</h2>
+
+    <!-- Add New Result Card Button -->
+<button class="add-result-card-button" (click)="toggleCreateResultCardForm()">
+    <i class="fas fa-plus"></i> Добавить новый
+</button>
+
+    <!-- Tab Group -->
+<mat-tab-group *ngIf="!isCreatingResultCard">
+    <!-- Tab for All Cards -->
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span class="all-cards-tab">Все</span>
+          </ng-template>
+      <div *ngFor="let card of resultCards" class="diagnostics-item">
+        <i class="fas fa-file-medical-alt"></i>
+        <div class="diagnostics-details">
+          <strong>{{ card.dateOfShouldReady | date: 'dd-MM-yyyy' }}</strong>
+          <p>{{ card.name }}</p>
+          <span>{{ card.description }}</span>
+        </div>
+        <button (click)="downloadResultFile(card.id)" class="download-button">
+            <i class="fas fa-download"></i> 
+          </button>
+      </div>
+    </mat-tab>
+  
+    <!-- Tab for Done Cards -->
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span class="done-cards-tab">Готово</span>
+          </ng-template>
+      <div *ngFor="let card of doneResultCards" class="diagnostics-item">
+        <i class="fas fa-file-medical-alt"></i>
+        <div class="diagnostics-details">
+          <strong>{{ card.dateOfShouldReady | date: 'dd-MM-yyyy' }}</strong>
+          <p>{{ card.name }}</p>
+          <span>{{ card.description }}</span>
+        </div>
+        <button (click)="downloadResultFile(card.id)" class="download-button">
+            <i class="fas fa-download"></i> 
+          </button>
+      </div>
+    </mat-tab>
+  
+    <!-- Tab for Not Done Cards -->
+    <mat-tab>
+        <ng-template mat-tab-label>
+            <span class="not-done-cards-tab">Не Готово</span>
+          </ng-template>
+      <div *ngFor="let card of notDoneResultCards" class="diagnostics-item">
+        <i class="fas fa-file-medical-alt"></i>
+        <div class="diagnostics-details">
+          <strong>{{ card.dateOfShouldReady | date: 'dd-MM-yyyy' }}</strong>
+          <p>{{ card.name }}</p>
+          <span>{{ card.description }}</span>
+        </div>
+        <button (click)="downloadResultFile(card.id)" class="download-button">
+            <i class="fas fa-download"></i> 
+          </button>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+  
+    
+    <!-- New Result Card Form -->
+<div *ngIf="isCreatingResultCard" class="result-card-create-form">
+    <form [formGroup]="createResultCardForm" (ngSubmit)="createResultCard()">
+        <div class="form-group">
+            <label for="name">Имя:</label>
+            <input type="text" formControlName="name" class="form-control" id="name">
+        </div>
+        <div class="form-group">
+            <label for="description">Описание:</label>
+            <textarea formControlName="description" class="form-control" id="description"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="dateOfShouldReady">Дата готовности:</label>
+            <input type="date" formControlName="dateOfShouldReady" class="form-control" id="dateOfShouldReady">
+        </div>
+        <div class="form-group">
+            <label for="hospitalAddress">Адрес больницы:</label>
+            <input type="text" formControlName="hospitalAddress" class="form-control" id="hospitalAddress">
+        </div>
+        <div class="form-group">
+            <label for="userEmail">Электронная почта пользователя:</label>
+            <input type="email" formControlName="userEmail" class="form-control" id="userEmail">
+        </div>
+        <button type="submit" class="btn btn-primary">Создать</button>
+        <button type="button" class="btn btn-secondary" (click)="isCreatingResultCard = false">Отмена</button>
+
+    </form>
+</div>
+</div>
 
 
     <!-- Medical History -->
@@ -126,11 +270,10 @@
     </div>
 
 
-    <!-- Diagnostics -->
-    <div class="diagnostics med-diagnostics-card">
+
+    <!-- <div class="diagnostics med-diagnostics-card">
         <h2>Диагностика</h2>
         <div class="diagnostics-content">
-            <!-- Sample Diagnostics Data -->
             <div class="diagnostics-item">
                 <i class="fas fa-stethoscope"></i>
                 <div class="diagnostics-details">
@@ -212,96 +355,12 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 
-    <!-- Treatments -->
-    <div class="treatments med-treatments-card">
-        <h2>Лечение и Рецепты</h2>
-        <div class="treatments-content">
-            <!-- Sample Treatments Data -->
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2023</strong>
-                    <p>Антибиотики для лечения инфекции</p>
-                    <span>Принимать дважды в день в течение 7 дней.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2022</strong>
-                    <p>Витамины для укрепления иммунитета</p>
-                    <span>Принимать один раз в день.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2021</strong>
-                    <p>Антигистаминные препараты</p>
-                    <span>Принимать при первых признаках аллергии.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2020</strong>
-                    <p>Лечение артрита</p>
-                    <span>Принимать по рекомендации врача.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2019</strong>
-                    <p>Лечение гастрита</p>
-                    <span>Соблюдать диету и принимать препараты.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2018</strong>
-                    <p>Лечение бронхита</p>
-                    <span>Принимать антибиотики и отдыхать.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2017</strong>
-                    <p>Лечение депрессии</p>
-                    <span>Консультации у психотерапевта и принимать антидепрессанты.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2016</strong>
-                    <p>Лечение ожогов</p>
-                    <span>Использовать мази и избегать солнечного света.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2015</strong>
-                    <p>Лечение гипертонии</p>
-                    <span>Принимать антигипертензивные препараты.</span>
-                </div>
-            </div>
-            <div class="treatments-item">
-                <i class="fas fa-pills"></i>
-                <div class="treatments-details">
-                    <strong>2014</strong>
-                    <p>Лечение диабета</p>
-                    <span>Соблюдать диету и принимать инсулин.</span>
-                </div>
-            </div>
-        </div>
-    </div>
+
+     
+
 
     <!-- Attachments -->
     <div class="attachments med-card">

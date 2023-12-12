@@ -6,7 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
+
 
 @Data
 @AllArgsConstructor
@@ -18,7 +20,7 @@ public class CreatingPassportRequest {
 
     private PassportGender passportGender;
 
-    private Date dateOfBirth;
+    private String dateOfBirth;
 
     private String placeOfBirth;
 
@@ -26,13 +28,12 @@ public class CreatingPassportRequest {
 
     private Integer number;
 
-    private Date dateOfIssue;
+    private String dateOfIssue;
 
     private Integer divisionCode;
 
     private String issuedBy;
 
-    //TO DO поменять убрать время
     public CreatingPassportRequest(Passport passport){
         this.id = passport.getId();
 
@@ -40,7 +41,7 @@ public class CreatingPassportRequest {
 
         this.passportGender = passport.getPassportGender();
 
-        this.dateOfBirth = passport.getDateOfBirth();
+        this.dateOfBirth = parseDateToString(passport.getDateOfBirth());
 
         this.placeOfBirth = passport.getPlaceOfBirth();
 
@@ -48,10 +49,15 @@ public class CreatingPassportRequest {
 
         this.number = passport.getNumber();
 
-        this.dateOfIssue = passport.getDateOfIssue();
+        this.dateOfIssue = parseDateToString(passport.getDateOfIssue());
 
         this.divisionCode = passport.getDivisionCode();
 
         this.issuedBy = passport.getIssuedBy();
+    }
+
+    public String parseDateToString(Date date){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        return dateFormat.format(date);
     }
 }

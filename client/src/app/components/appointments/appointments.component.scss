@@ -1,0 +1,185 @@
+@import "../../../styles.scss";
+
+.appointment-card-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.appointment-card-banner {
+  box-shadow: 0 4px 8px rgba(62, 96, 207, 0.1),
+    0 0 10px rgba(131, 176, 235, 0.1); // Enhanced shadow
+  border: 1px solid $dark-button-bg;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.banner-content {
+  flex: 1;
+  text-align: center;
+}
+
+.banner-content i {
+  margin-bottom: 10px; // Space between the icon and the heading
+  color: #007bff; // Color of the icon
+}
+
+.banner-image {
+  flex-basis: 30%; // Adjust as needed
+  padding-left: 20px; // Space between text and image
+}
+
+.banner-image img {
+  max-width: 100%;
+  border-radius: 10px; // Optional: to make the image corners rounded
+}
+
+
+
+.table-card {
+    border: 1px solid #007bff;
+    //background-color: rgba(255, 255, 255, 0.1); // Transparent background
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .table-scroll {
+    max-height: 400px; // Set a maximum height
+    overflow-y: auto; // Enable vertical scrolling
+    margin-bottom: 20px; // Optional, for spacing
+
+    table {
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0;
+        margin-top: 10px;
+    }
+
+    // Rest of your table styles...
+}
+
+ 
+  .appointments-table
+  {
+    margin-top: 20px;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: separate; // Change to separate
+    border-spacing: 0; // Add this to ensure there's no spacing between cells
+    margin-top: 10px;
+  }
+  
+  table th,
+  table td {
+    padding: 12px 10px; // Increased padding for better spacing
+    text-align: left;
+    position: relative; // To position the pseudo-element
+  }
+  
+  table tr:not(:last-child) th,
+  table tr:not(:last-child) td {
+    border-bottom: 1px solid rgba(224, 224, 224, 0.5); // Lighter and semi-transparent border
+  }
+  
+  table th {
+    background-color: rgba(
+      0,
+      123,
+      255,
+      0.1
+    ); // A very light blue background for headers
+    border-radius: 10px; // Rounded corners for the top
+  }
+  
+  .tabs {
+    display: flex;
+    margin-bottom: 10px;
+    border-radius: 10px; // Added corner radius for the container
+    overflow: hidden; // Ensures inner buttons conform to the container's border-radius
+  }
+  
+  .tabs button {
+    flex: 1;
+    padding: 10px;
+    cursor: pointer;
+    border: none;
+    background-color: rgba(
+      0,
+      123,
+      255,
+      0.1
+    ); // Light blue background for better visibility
+    transition: background-color 0.3s ease;
+    border-radius: 5px; // Corner radius for individual buttons
+    color: #007bff; // Blue text color for better visibility
+  }
+  
+  .tabs button.active {
+    background-color: $dark-button-bg;
+    color: $dark-text; // Darker text color for active tab
+  }
+
+
+  .appointment-actions {
+    display: flex;
+    justify-content: space-between; // Changed to space-between for better spacing
+    margin-top: 20px;
+    flex-wrap: wrap; // Allows buttons to wrap on smaller screens
+  
+    @media (min-width: 768px) { // For tablets and desktops
+      justify-content: space-between; // Buttons at the edges of the card
+    }
+  }
+  
+  .btn-appointment {
+    padding: 10px 20px;
+    border-radius: 5px;
+    background-color: $light-button-bg;
+    color: $light-button-text;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    flex-grow: 1; // Allows buttons to grow and fill the space
+  
+    &:not(:last-child) {
+      margin-bottom: 10px; // Adds space between buttons on mobile
+    }
+  
+    &:hover {
+      background-color: darken($light-button-bg, 10%);
+    }
+  
+    @media (min-width: 768px) { // For tablets and desktops
+      flex-grow: 0; // Prevents buttons from growing
+      &:not(:last-child) {
+        margin-bottom: 0; // Removes the bottom margin on larger screens
+        margin-right: 10px; // Adds space between buttons
+      }
+    }
+  }
+  
+
+  /* Responsive Design */
+@media (max-width: 768px) {
+    .appointment-card-banner {
+      flex-direction: column;
+    }
+  
+    .banner-content {
+      margin-bottom: 20px;
+    }
+  
+    .banner-image {
+      flex-basis: 100%;
+      padding-left: 0;
+    }
+  }
+  
