@@ -43,13 +43,6 @@ public class Hospital {
     @Temporal(TemporalType.TIME)
     private Date closingTime;
 
-    @JsonIgnore
-    @OneToMany(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
-            mappedBy = "hospital"
-    )
-    private List<Appointment> appointments = new ArrayList<>();
-
     @Override
     public String toString() {
         return "Hospital";

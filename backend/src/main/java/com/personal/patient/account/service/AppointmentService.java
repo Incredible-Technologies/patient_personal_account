@@ -35,10 +35,6 @@ public class AppointmentService {
                 () -> new NotFoundException("no doctor with such id: " + creatingAppointmentResponse.getDoctorId())
         );
 
-        Hospital hospital = hospitalService.findById(creatingAppointmentResponse.getHospitalId()).orElseThrow(
-                () -> new NotFoundException("no hospital with such id: " + creatingAppointmentResponse.getHospitalId())
-        );
-
         Services service = servicesService.findById(creatingAppointmentResponse.getServiceId()).orElseThrow(
                 () -> new NotFoundException("no service with such id: " + creatingAppointmentResponse.getServiceId())
         );
@@ -49,7 +45,6 @@ public class AppointmentService {
 
         appointment.setServices(service);
         appointment.setDoctor(doctor);
-        appointment.setHospital(hospital);
         appointment.setUser(user);
 
         Date startTime = dateUtils.parseStringToTime(creatingAppointmentResponse.getStartTime());

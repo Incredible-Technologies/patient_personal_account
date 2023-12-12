@@ -41,7 +41,6 @@ public class Doctor {
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @JsonIgnore
     @ManyToOne(
             cascade = CascadeType.ALL, fetch = FetchType.LAZY
     )

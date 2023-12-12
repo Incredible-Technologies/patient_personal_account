@@ -19,15 +19,9 @@ public class Appointment {
     @Column(name="id")
     private Long id;
 
-    @JsonIgnore
-    @ManyToOne(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY
-    )
-    @JoinColumn(name="hospital_id")
-    private Hospital hospital;
 
     @ManyToOne(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY
+            cascade = CascadeType.REMOVE, fetch = FetchType.LAZY
     )
     @JoinColumn(name="doctor_id")
     private Doctor doctor;

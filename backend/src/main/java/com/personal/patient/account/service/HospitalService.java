@@ -62,7 +62,7 @@ public class HospitalService {
                 () -> new NotFoundException("No hospital file with id: " + hospitalId)
         );
         final Doctor doctor = new Doctor();
-//        doctor.setHospital(hospital);
+        doctor.setHospital(hospital);
         List<Services> services = creatingDoctorResponse.getServices().stream().map((element)->{
             Services services1 = new Services();
             services1.setDoctor(doctor);

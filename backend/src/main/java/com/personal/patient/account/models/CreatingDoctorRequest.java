@@ -50,7 +50,7 @@ public class CreatingDoctorRequest {
         this.lastName = doctor.getLastName();
         this.dateOfBirth = parseDateToString(doctor.getDateOfBirth());
         this.gender = doctor.getGender();
-        //this.hospitalId = doctor.getHospital().getId();
+        this.hospitalId = doctor.getHospital().getId();
         this.services = doctor.getServices().stream().map(CreatingServices::new).collect(Collectors.toList());
         this.specializations = doctor.getSpecializations().stream().map(CreatingSpecialization::new).collect(Collectors.toList());
         this.startTime = convertTimeToString(doctor.getStartTime().getTime());
