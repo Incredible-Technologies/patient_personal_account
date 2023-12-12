@@ -32,4 +32,9 @@ public class AppointmentController {
     public ResponseEntity<?> allAppointment(Principal principal){
         return ResponseEntity.ok(appointmentService.getAllUserAppointment(principal));
     }
+
+    @GetMapping("")
+    public ResponseEntity<?> allAppointment(@RequestParam("date") String date, Principal principal){
+        return ResponseEntity.ok(appointmentService.getAllUserAppointmentByDate(principal, date));
+    }
 }
