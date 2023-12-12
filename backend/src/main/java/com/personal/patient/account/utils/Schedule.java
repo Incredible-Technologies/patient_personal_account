@@ -1,8 +1,11 @@
 package com.personal.patient.account.utils;
 
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Schedule {
     private final List<Period> periods;
 

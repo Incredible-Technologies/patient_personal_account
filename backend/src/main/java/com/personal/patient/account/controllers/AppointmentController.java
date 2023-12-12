@@ -49,6 +49,11 @@ public class AppointmentController {
 
     @GetMapping("/doctor/{doctorId}")
     public ResponseEntity<?> allAppointment(@PathVariable Long doctorId, Principal principal){
-        return ResponseEntity.ok(appointmentService.getAllDoctorAppointmentByDate(doctorId));
+        return ResponseEntity.ok(appointmentService.getAllDoctorAppointment(doctorId));
+    }
+
+    @GetMapping("/doctor/free-time")
+    public ResponseEntity<?> getDoctorFreeTime(@RequestParam("date") String date, @RequestParam("doctorId") Long doctorId, Principal principal){
+        return ResponseEntity.ok(appointmentService.getAllDoctorFreeTimeByDate(doctorId,date));
     }
 }
