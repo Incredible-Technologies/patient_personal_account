@@ -36,7 +36,7 @@ public class CreatingDoctorRequest {
 
     private List<CreatingSpecialization> specializations;
 
-    private List<CreatingServices> services;
+    private List<CreatingServiceRequest> services;
 
     private String startTime;
 
@@ -51,7 +51,7 @@ public class CreatingDoctorRequest {
         this.dateOfBirth = parseDateToString(doctor.getDateOfBirth());
         this.gender = doctor.getGender();
         this.hospitalId = doctor.getHospital().getId();
-        this.services = doctor.getServices().stream().map(CreatingServices::new).collect(Collectors.toList());
+        this.services = doctor.getServices().stream().map(CreatingServiceRequest::new).collect(Collectors.toList());
         this.specializations = doctor.getSpecializations().stream().map(CreatingSpecialization::new).collect(Collectors.toList());
         this.startTime = convertTimeToString(doctor.getStartTime().getTime());
         this.endTime = convertTimeToString(doctor.getEndTime().getTime());
