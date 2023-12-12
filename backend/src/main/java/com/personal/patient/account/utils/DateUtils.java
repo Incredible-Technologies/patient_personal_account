@@ -7,8 +7,10 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
@@ -48,5 +50,10 @@ public class DateUtils {
         calendar.setTime(date);
         calendar.add(Calendar.MINUTE, minutes);
         return calendar.getTime();
+    }
+
+    public LocalTime dateToTime(Date date){
+        Time time = new Time(date.getTime());
+        return time.toLocalTime();
     }
 }

@@ -26,6 +26,7 @@ public class CreatingAppointmentRequest {
     private Long doctorId;
     private Long serviceId;
 
+    private Long hospitalId;
     private String date;
 
     private String startTime;
@@ -38,6 +39,7 @@ public class CreatingAppointmentRequest {
 
        this.doctorId = appointment.getDoctor().getId();
 
+       this.hospitalId = appointment.getHospital().getId();
 
         this.serviceId = appointment.getServices().getId();
 

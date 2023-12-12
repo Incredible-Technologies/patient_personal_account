@@ -42,7 +42,7 @@ public class Doctor {
     private Gender gender;
 
     @ManyToOne(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name="hospital_id")
     private Hospital hospital;

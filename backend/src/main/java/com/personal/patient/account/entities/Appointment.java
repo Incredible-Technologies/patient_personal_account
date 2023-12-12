@@ -19,21 +19,26 @@ public class Appointment {
     @Column(name="id")
     private Long id;
 
+    @ManyToOne(
+            fetch = FetchType.LAZY
+    )
+    @JoinColumn(name="hospital_id")
+    private Hospital hospital;
 
     @ManyToOne(
-            cascade = CascadeType.REMOVE, fetch = FetchType.LAZY
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name="doctor_id")
     private Doctor doctor;
 
     @ManyToOne(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name="services_id")
     private Services services;
