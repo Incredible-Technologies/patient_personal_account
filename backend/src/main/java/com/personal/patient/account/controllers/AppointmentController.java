@@ -20,6 +20,11 @@ public class AppointmentController {
     protected ResponseEntity<Object> handleOverAppointmentException(OverAppointmentException ex) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
     }
+
+    @ExceptionHandler(NotFoundException.class)
+    protected ResponseEntity<Object> handleNotFoundException(NotFoundException ex) {
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
     private final AppointmentService appointmentService;
 
     @PostMapping("")
@@ -40,5 +45,10 @@ public class AppointmentController {
     @GetMapping("/doctor")
     public ResponseEntity<?> allAppointment(@RequestParam("date") String date, @RequestParam("doctorId") Long doctorId, Principal principal){
         return ResponseEntity.ok(appointmentService.getAllDoctorAppointmentByDate(date, doctorId));
+    }
+
+    @GetMapping("/doctor/{doctorId}")
+    public ResponseEntity<?> allAppointment(@PathVariable Long doctorId, Principal principal){
+        return ResponseEntity.ok(appointmentService.getAllDoctorAppointmentByDate(doctorId));
     }
 }

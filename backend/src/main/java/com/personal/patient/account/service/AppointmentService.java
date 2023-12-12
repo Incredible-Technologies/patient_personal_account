@@ -111,6 +111,15 @@ public class AppointmentService {
         return list.stream().map(CreatingAppointmentRequest::new).collect(Collectors.toList());
     }
 
+    public List<CreatingAppointmentRequest> getAllDoctorAppointmentByDate(Long doctorId){
+
+        Doctor doctor = doctorService.findById(doctorId).orElseThrow(
+                () -> new NotFoundException("no doctor with such id: " + doctorId)
+        );
+        List<Appointment> list = appointmentRepository.findByDoctor(doctor);
+        return list.stream().map(CreatingAppointmentRequest::new).collect(Collectors.toList());
+    }
+
     public List<Appointment> getAllDoctorsAppointmentsByDate(Doctor doctor, Date date){
         return appointmentRepository.findByDoctorAndDate(doctor,date);
     }
