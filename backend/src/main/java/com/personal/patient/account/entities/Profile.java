@@ -27,7 +27,7 @@ public class Profile {
     @Column(name="lastName")
     private String lastName;
 
-    @Column(name="date_of_birt")
+    @Column(name="date_of_birth")
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
     private Date dateOfBirth;
