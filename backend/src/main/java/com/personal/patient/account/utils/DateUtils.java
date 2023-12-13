@@ -7,10 +7,7 @@ import org.springframework.stereotype.Component;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -41,6 +38,7 @@ public class DateUtils {
             e.printStackTrace();
         }
         return date;
+    }
   
     public String parseDateToString(Date date){
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
