@@ -56,4 +56,14 @@ public class AppointmentController {
     public ResponseEntity<?> getDoctorFreeTime(@RequestParam("date") String date, @RequestParam("doctorId") Long doctorId, Principal principal){
         return ResponseEntity.ok(appointmentService.getAllDoctorFreeTimeByDate(doctorId,date));
     }
+
+    @GetMapping("/coming")
+    public ResponseEntity<?> getUserComingAppointment(Principal principal){
+        return ResponseEntity.ok(appointmentService.getAllUserComingAppointment(principal));
+    }
+
+    @GetMapping("/past")
+    public ResponseEntity<?> getUserPastAppointment(Principal principal){
+        return ResponseEntity.ok(appointmentService.getAllUserPastAppointment(principal));
+    }
 }

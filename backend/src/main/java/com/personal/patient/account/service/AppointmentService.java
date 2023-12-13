@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -121,8 +122,35 @@ public class AppointmentService {
         return getDoctorFreeTime(doctor, hospital, date).getPeriods();
     }
 
-    public List<CreatingAppointmentRequest> getAllDoctorAppointment(Long doctorId){
+    public List<CreatingAppointmentRequest> getAllUserComingAppointment(Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+        Date date = new Date();
+        List<Appointment> listAfter = appointmentRepository.findAppointmentsByDateAfter(date, user);
+        List<Appointment> listEquals = appointmentRepository.findAppointmentsByDateEquals(date, user);
+        listEquals.forEach((element) ->{
+                if(dateUtils.dateToTime(element.getStartTime()).isAfter(dateUtils.dateToTime(date))){
+                    listAfter.add(element);
+                }
+            }
+        );
+        return listAfter.stream().map(CreatingAppointmentRequest::new).collect(Collectors.toList());
+    }
 
+    public List<CreatingAppointmentRequest> getAllUserPastAppointment(Principal principal){
+        User user = userService.getUserByPrincipal(principal);
+        Date date = new Date();
+        List<Appointment> listBefore = appointmentRepository.findAppointmentsByDateBefore(date, user);
+        List<Appointment> listEquals = appointmentRepository.findAppointmentsByDateEquals(date, user);
+        listEquals.forEach((element) ->{
+                    if(dateUtils.dateToTime(element.getStartTime()).isBefore(dateUtils.dateToTime(date))){
+                        listBefore.add(element);
+                    }
+                }
+        );
+        return listBefore.stream().map(CreatingAppointmentRequest::new).collect(Collectors.toList());
+    }
+
+    public List<CreatingAppointmentRequest> getAllDoctorAppointment(Long doctorId){
         Doctor doctor = doctorService.findById(doctorId).orElseThrow(
                 () -> new NotFoundException("no doctor with such id: " + doctorId)
         );

@@ -2,17 +2,15 @@ package com.personal.patient.account.utils;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -34,7 +32,7 @@ public class DateUtils {
     }
 
     public Date parseStringToTime(String stringTime){
-        SimpleDateFormat formatter = new SimpleDateFormat("h:mm");
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
         Date date = new Date();
         try {
             date = formatter.parse(stringTime);
