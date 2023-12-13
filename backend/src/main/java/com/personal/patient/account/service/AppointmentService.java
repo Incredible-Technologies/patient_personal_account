@@ -73,7 +73,7 @@ public class AppointmentService {
         );
 
         if(!successAdding){
-            throw new OverAppointmentException("Запись в это время уже занята, перезапустите страницу и выберите другое время");
+            throw new OverAppointmentException("Запись в это время уже занята или невозможна, перезапустите страницу и выберите другое время");
         }
 
         appointment.setServices(service);
