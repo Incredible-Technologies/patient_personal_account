@@ -1,5 +1,7 @@
 package com.personal.patient.account.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personal.patient.account.models.enums.Gender;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,7 +42,7 @@ public class Doctor {
     private Gender gender;
 
     @ManyToOne(
-            cascade = CascadeType.ALL, fetch = FetchType.LAZY
+            fetch = FetchType.LAZY
     )
     @JoinColumn(name="hospital_id")
     private Hospital hospital;
@@ -65,6 +67,12 @@ public class Doctor {
     @Column(name="end_time")
     @Temporal(TemporalType.TIME)
     private Date endTime;
+
+    @OneToMany(
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
+            mappedBy = "doctor"
+    )
+    private List<Appointment> appointments = new ArrayList<>();
 
     @Override
     public String toString() {

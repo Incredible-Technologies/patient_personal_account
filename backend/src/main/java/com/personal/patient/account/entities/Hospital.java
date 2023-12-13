@@ -1,5 +1,7 @@
 package com.personal.patient.account.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -26,8 +28,9 @@ public class Hospital {
     @Column(name="address")
     private String address;
 
+    @JsonIgnore
     @OneToMany(
-            cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            cascade = CascadeType.ALL, fetch = FetchType.LAZY,
             mappedBy = "hospital"
     )
     private List<Doctor> doctors = new ArrayList<>();

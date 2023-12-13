@@ -57,6 +57,16 @@ public class HospitalController {
         return ResponseEntity.ok(doctorService.addSpecializations(creatingSpecialization, doctorId));
     }
 
+    @GetMapping("/doctor/services/{doctorId}")
+    public ResponseEntity<?> getAllDoctorServices(@PathVariable Long doctorId){
+        return ResponseEntity.ok(doctorService.allServices(doctorId));
+    }
+
+    @GetMapping("/doctor/specializations/{doctorId}")
+    public ResponseEntity<?> getAllDoctorSpecializations(@PathVariable Long doctorId){
+        return ResponseEntity.ok(doctorService.allSpecialization(doctorId));
+    }
+
     @GetMapping("/doctors")
     public ResponseEntity<?> allDoctors(){
         return ResponseEntity.ok(doctorService.allDoctors());
